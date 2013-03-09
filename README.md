@@ -15,7 +15,7 @@ Version
 0.0.1
 
 Installation
---------------
+-
 
 ```npm install
 node app

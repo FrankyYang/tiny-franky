@@ -1,0 +1,13 @@
+<% if (!user) { %>
+  <div class="hero-unit">
+    <h1>欢迎来到 API Simulator</h1>
+    <p>API Simulator 是一个对server端的API进行模拟的工具。</p>
+    <p>
+      <a class="btn btn-primary btn-large" href="/login">登录</a>
+      <a class="btn btn-large" href="/reg">立即注册</a>
+    </p>
+  </div>
+<% } else { %>
+    <%- partial('apiPostForm') %>
+    <%- partial('posts', {posts:posts}) %> 
+<% } %>

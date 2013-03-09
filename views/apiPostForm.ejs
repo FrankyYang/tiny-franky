@@ -1,0 +1,21 @@
+<form class="form-horizontal" method="post" action="/post">
+    <fieldset>
+        <legend>注册一个静态的虚拟Ajax请求</legend>
+        <div class="control-group">
+            <label class="control-label" for="username">URL</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="urlvalue" name="urlvalue">
+                <p class="help-block">你要注册的URL，可包含参数，合法性不做检验</p>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="response">Response</label>
+            <div class="controls">
+                <textarea class="input-xlarge" id="response" name="response" placeholder="var cb = {id: '1234'}" rows="5"></textarea>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </fieldset>
+</form>

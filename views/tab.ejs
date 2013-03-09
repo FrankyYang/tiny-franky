@@ -1,0 +1,27 @@
+<form class="form-horizontal" method="post" action="/tab">
+    <fieldset>
+        <legend>定制server端的数据表</legend>
+        <div class="control-group">
+            <label class="control-label" for="username">表的名字</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="tabname" name="tabname">
+                <p class="help-block">向服务器端添加的表的名字</p>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">添加</button>
+        </div>
+    </fieldset>
+</form>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>表名</th>
+            <th>链接</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%- partial('table', {tables:tables}) %> 
+    </tbody>
+</table>

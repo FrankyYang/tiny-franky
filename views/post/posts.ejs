@@ -1,4 +1,4 @@
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped" id="DataList">
     <thead>
         <tr>
             <th>标题</th>
@@ -9,14 +9,17 @@
 	<tbody>
         <% posts && posts.forEach(function(post, index) { %>
             <tr>
-                <% if (post.url) { %>
-                    <td><%= post.url %></td>
+                <% if (post.title) { %>
+                    <td><%= post.title %></td>
                 <% } %>
-                <% if (post.response) { %>
-                    <td><%= post.response %></td>
+                <% if (post.content) { %>
+                    <td><%= post.content%></td>
                 <% } %>
-                <% if (post.url) { %>
-                    <td><button class="btn btn-danger delete-apiurl" id="<%= post.url %>">删除</button></td>
+                <% if (post.title) { %>
+                    <td>
+                        <button class="btn btn-danger delete" id="<%= post.title %>">删除</button>
+                        <button class="btn btn-info edit" id="<%= post.title %>" style="display:none;">编辑</button>
+                    </td>
                 <% } %>
             </tr>
         <%}) %>

@@ -184,4 +184,4 @@ var _self = {
     }
 };
 
-require('underscore').extend(exports, _self);
+module.exports = _self;

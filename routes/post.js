@@ -20,10 +20,10 @@ var gConfig = require('./config');
 var _self = {
     // Save the posted url infomation from the user
     write: function(req, res) {
-        var url = req.body.urlvalue;
-        var response = req.body.response;
+        var title = req.body.title;
+        var content = req.body.content;
         var name = req.session.user ? req.session.user.name : null;
-        var post = new Post(url, response, name);
+        var post = new Post(title, content, name);
 
         post.save(function(err, results) {
             if (err) {
@@ -39,20 +39,19 @@ var _self = {
     // Response the delete row operation from the client side
     // Here we remove that data from database
     operation: function(req, res) {
-        var url = req.body.urlvalue;
+        var title = req.body.urlvalue;
         var operation = req.body.operation;
 
         if (operation && operation == "delete") {
-            Post.removeWithUrl(url, function (err) {
+            Post.removeWithUrl(title, function (err) {
                 if (err) {
-                    console.log("Remove the url " + url + " with err: " + err);
+                    console.log("Remove the record with title " + title + " has err: " + err);
                     return;
                 }
-                console.log("Remove the url " + url + " success!");
                 res.redirect('/');
             });
         }
     }
 };
 
-require('underscore').extend(exports, _self);
+module.exports = _self;

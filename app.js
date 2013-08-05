@@ -17,10 +17,8 @@
 var express = require('express');
 var http = require('http');
 var MongoStore = require('connect-mongo')(express);
-var SessionStore = require("session-mongoose")(express);
 var partials = require('express-partials');
 
-var routes = require('./routes');
 var userRoutes = require('./routes/user');
 var postRoutes = require('./routes/post');
 
@@ -31,10 +29,6 @@ var sessionStore = new MongoStore({
     db : settings.db
 }, function() {
     console.log('connect mongodb success...');
-});
-var store = new SessionStore({
-    url: "mongodb://localhost/session",
-    interval: 120000
 });
 
 app.configure(function(){
@@ -55,7 +49,7 @@ app.configure(function(){
         cookie : {
             maxAge : 60000 * 20    //cookie expire time: 20 minutes
         },
-        store : store
+        store : sessionStore
     }));
     app.use(app.router);
 });

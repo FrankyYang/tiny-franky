@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-var Post = require('../models/post.js'); // Save the content that the user posted
-var gConfig = require('./config.js');
+var Post = require('../models/post'); // Save the content that the user posted
+var gConfig = require('./config');
 
 var _self = {
     // Save the posted url infomation from the user

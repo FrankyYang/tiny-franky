@@ -16,9 +16,9 @@
 
 var uCrypto = require('crypto');
 
-var User = require('../models/user.js'); // Save the user info of this website
-var Post = require('../models/post.js'); // Save the content that the user posted
-var gConfig = require('./config.js');
+var User = require('../models/user'); // Save the user info of this website
+var Post = require('../models/post'); // Save the content that the user posted
+var gConfig = require('./config');
 
 // Util function for password check
 function _checkPasswd (passwd, passwdRepeat) {
@@ -42,7 +42,7 @@ function _renderUserPosts(req, res, username) {
             req.session.error = err;
             return;
         }
-        _render('user', req, res, username, {posts: posts});
+        _render('./user/user', req, res, username, {posts: posts});
     });
 }
 
@@ -88,7 +88,7 @@ var _self = {
         if (user && user.name) {
             _renderUserPosts(req, res, user.name);
         } else {
-            _render('index', req, res, gConfig.user.frontPageTitle, {posts: null});
+            _render('./home/index', req, res, gConfig.user.frontPageTitle, {posts: null});
         }
     },
 
@@ -106,12 +106,12 @@ var _self = {
 
     // Render the login page
     login: function(req, res) {
-        _render('login', req, res, gConfig.user.loginTitle);
+        _render('./user/login', req, res, gConfig.user.loginTitle);
     },
 
     // Render the reg page
     reg: function(req, res) {
-        _render('reg', req, res, gConfig.user.regTitle);
+        _render('./user/reg', req, res, gConfig.user.regTitle);
     },
 
     // Check the user name and the passwd, if pass, redirect

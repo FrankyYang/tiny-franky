@@ -22,10 +22,10 @@ var _self = {
     write: function(req, res) {
         var title = req.body.title;
         var content = req.body.content;
+        var update = req.body.update == '' ? null : req.body.update;
         var name = req.session.user ? req.session.user.name : null;
         var post = new Post(title, content, name);
-
-        post.save(function(err, results) {
+        var callback = function(err, results) {
             if (err) {
                 req.session.error = err;
                 return res.redirect('/');
@@ -33,7 +33,13 @@ var _self = {
 
             req.session.success = gConfig.post.postSuccess;
             res.redirect('/');
-        });
+        };
+
+        if (update) {
+            post.update({title: title}, callback);
+        } else {
+            post.save(callback);
+        }
     },
 
     // Response the delete row operation from the client side

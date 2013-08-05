@@ -5,8 +5,8 @@
             <th>内容</th>
             <th>操作</th>
         </tr>
-	</thead>
-	<tbody>
+    </thead>
+    <tbody>
         <% posts && posts.forEach(function(post, index) { %>
             <tr>
                 <% if (post.title) { %>
@@ -18,7 +18,7 @@
                 <% if (post.title) { %>
                     <td>
                         <button class="btn btn-danger delete" id="<%= post.title %>">删除</button>
-                        <button class="btn btn-info edit" id="<%= post.title %>" style="display:none;">编辑</button>
+                        <button class="btn btn-info edit" id="<%= post.title %>">编辑</button>
                     </td>
                 <% } %>
             </tr>

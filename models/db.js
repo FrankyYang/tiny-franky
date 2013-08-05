@@ -46,6 +46,40 @@ _self.util = {
         }
     },
 
+    update: function (collectionName, query, obj, callback) {
+        try {
+            _self.open(function(err, db) {
+                if (err) {
+                    console.warn('Error while opening database, with collection ' + collectionName);
+                    return callback(err);
+                }
+
+                db.collection(collectionName, function(err, collection) {
+                    if (err) {
+                        _self.close();
+                        console.warn('Error while opening collection, with collection ' + collectionName);
+                        return callback(err);
+                    }
+
+                    collection.update(query, obj, {upsert: true}, function(err, num) {
+                        _self.close();
+
+                        if (err) {
+                            console.warn('Error while updating the collection, with collection ' + collectionName);
+                            console.warn(err);
+                        }
+
+                        callback(err);
+                    });
+                });
+            });
+        } catch (e) {
+            _self.close();
+            callback('Database error!');
+        }
+
+    },
+
     get: function (collectionName, searchObj, callback) {
         try {
             _self.open(function(err, db) {
@@ -138,7 +172,7 @@ _self.util = {
         } catch (e) {
             _self.close();
             callback('Database error!');
-        }     
+        }
     }
 };
 

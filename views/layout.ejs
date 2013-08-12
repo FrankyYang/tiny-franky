@@ -34,6 +34,9 @@
                 <li><a href="/reg">注册</a></li>
               <% } else { %>
                 <li><a href='javascript:;'>欢迎您,<%= user.name%></a></li>
+                <% if (user.name == 'yangfan') { %>
+                    <li><a href='/upload'>上传</a></li>
+                <% } %>
                 <li><a href="/logout">退出</a></li>
                 <!-- <li><a href="/tab">定制数据</a></li> -->
               <% } %>

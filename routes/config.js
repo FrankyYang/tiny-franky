@@ -32,3 +32,8 @@ exports.user = {
 exports.post = {
     postSuccess: '提交成功'
 };
+
+exports.operation = {
+    fileUploadError: '文件上传失败',
+    fileUploadSuccess: '文件上传成功'
+};

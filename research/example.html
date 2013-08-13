@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>编辑_游戏库_乐高</title>
+<link rel='stylesheet' href='../public/stylesheets/bootstrap.css' />
+<link href="../public/stylesheets/bootstrap-responsive.css" rel="stylesheet">
+<script src="../public/javascripts/jquery.js"></script>
+<meta charset="utf-8">
+<script></script>
+<style type="text/css">
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+.hero-appicon {
+	background: #eee;
+    border-radius: 6px;
+    margin-bottom: 30px;
+    padding: 20px 60px 60px;
+}
+.appicon {
+    overflow:hidden;
+}
+.appicon ul {
+    width: 110%;
+}
+.appicon li {
+    list-style: none;
+    float: left;
+    display: inline;
+    margin: 40px 40px 0 0;
+}
+</style>
+</head>
+
+<body>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Web APP</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="/">首页</a></li>
+                <li><a href="/login">登录</a></li>
+                <li><a href="/reg">注册</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="container" class="container">
+        <div class="hero-unit" data-cms="welcom">
+            <h1>欢迎来到web应用广场</h1>
+            <p>Web APPs是一个展示各种有用的网络程序的地方。</p>
+            <p>
+                <a class="btn btn-primary btn-large" href="/login">登录</a>
+                <a class="btn btn-large" href="/reg">注册</a>
+            </p>
+        </div>
+
+        <div class="hero-appicon" data-cms="applist">
+            <div class="appicon">
+                <ul>
+                    <li><a href="" target="_blank"><img src="http://i.gtimg.cn/qqlive/images/20111219/i1324268758_1.jpg" alt="" /></a></li>
+                    <li><a href="" target="_blank"><img src="http://i.gtimg.cn/qqlive/images/20111219/i1324268758_1.jpg" alt="" /></a></li>
+                    <li><a href="" target="_blank"><img src="http://i.gtimg.cn/qqlive/images/20111219/i1324268758_1.jpg" alt="" /></a></li>
+                    <li><a href="" target="_blank"><img src="http://i.gtimg.cn/qqlive/images/20111219/i1324268758_1.jpg" alt="" /></a></li>
+                    <li><a href="" target="_blank"><img src="http://i.gtimg.cn/qqlive/images/20111219/i1324268758_1.jpg" alt="" /></a></li>
+                    <li><a href="" target="_blank"><img src="http://i.gtimg.cn/qqlive/images/20111219/i1324268758_1.jpg" alt="" /></a></li>
+                    <li><a href="" target="_blank"><img src="http://i.gtimg.cn/qqlive/images/20111219/i1324268758_1.jpg" alt="" /></a></li>
+                    <li><a href="" target="_blank"><img src="http://i.gtimg.cn/qqlive/images/20111219/i1324268758_1.jpg" alt="" /></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <hr />
+
+        <footer>
+            <p><a href="javascript:;">云帆高科</a> 2013</p>
+        </footer>
+    </div>
+</body>
+<script>
+    $(function () {
+        $('[data-cms]').each(function (key, value) {
+            $(value).css('border-color', 'red').css('border-style', 'solid').css('border-width', '1px');
+        });
+    });
+</script>
+</html>

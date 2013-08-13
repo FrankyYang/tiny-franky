@@ -5,7 +5,9 @@
 <title>编辑_游戏库_乐高</title>
 <link rel='stylesheet' href='../public/stylesheets/bootstrap.css' />
 <link href="../public/stylesheets/bootstrap-responsive.css" rel="stylesheet">
+<link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
 <script src="../public/javascripts/jquery.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <meta charset="utf-8">
 <script></script>
 <style type="text/css">
@@ -14,7 +16,7 @@ body {
     padding-bottom: 40px;
 }
 .hero-appicon {
-	background: #eee;
+    background: #eee;
     border-radius: 6px;
     margin-bottom: 30px;
     padding: 20px 60px 60px;
@@ -86,11 +88,34 @@ body {
             <p><a href="javascript:;">云帆高科</a> 2013</p>
         </footer>
     </div>
+
+    <div id="ToolTip" class="ui-tooltip progress-border" style="display:none;">
+        <div class="btn-group">
+            <button class="btn btn-primary btn-mini">编辑</button>
+            <button class="btn btn-info btn-mini">删除</button>
+            <button class="btn btn-info btn-mini">保存</button>
+            <button class="btn btn-warning btn-mini" id="TipHide">关闭</button>
+        </div>
+    </div>
 </body>
 <script>
     $(function () {
+        var $tip = $('#ToolTip');
         $('[data-cms]').each(function (key, value) {
-            $(value).css('border-color', 'red').css('border-style', 'solid').css('border-width', '1px');
+            var $dom = $(value);
+            $dom.css('border-color', 'red').css('border-style', 'solid').css('border-width', '1px');
+            $dom.on('hover', function () {
+                var $dom = $(this);
+                $tip.css('left', $dom.position().left)
+                    .css('top', $dom.position().top)
+                    .show();
+            }).on('mouseout', function () {
+                // $tip.hide();
+            });
+        });
+
+        $('#TipHide').on('click', function () {
+            $tip.hide();
         });
     });
 </script>

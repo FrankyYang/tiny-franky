@@ -33,6 +33,43 @@ body {
     display: inline;
     margin: 40px 40px 0 0;
 }
+/**
+ * 表单相关的样式
+ */
+.form-container {
+  border: 1px solid #cdcdcd;
+  background-color: rgba(252, 248, 248, 0.47);
+  margin-bottom: 15px;
+  width: 600px;
+}
+
+.form-container hr.dotted {
+    margin: 10px 0;
+    border: 0;
+    border-top: 1px dashed #bfbfbf;
+    border-bottom: 1px dashed #ffffff;
+}
+
+.form-container .container .form-inline {
+    margin: 0;
+}
+
+.form-container .container, .form-container .module-container {
+    margin: 20px;
+}
+
+.form-horizontal .form-actions {
+    background-color: white;
+    border: 0;
+    width: 420px;
+}
+.editor .close-custom {
+    right: -420px;
+    position: relative;
+}
+.editor .container {
+    width: 600px;
+}
 </style>
 </head>
 
@@ -89,33 +126,149 @@ body {
         </footer>
     </div>
 
-    <div id="ToolTip" class="ui-tooltip progress-border" style="display:none;">
+    <div id="ToolTip" class="ui-tooltip progress-border" style="display:none;" draggable="true">
         <div class="btn-group">
-            <button class="btn btn-primary btn-mini">编辑</button>
+            <button class="btn btn-primary btn-mini" id="EditWidget">编辑</button>
             <button class="btn btn-info btn-mini">删除</button>
             <button class="btn btn-info btn-mini">保存</button>
             <button class="btn btn-warning btn-mini" id="TipHide">关闭</button>
         </div>
     </div>
+
+    <div id="WidgetEditor" class="ui-tooltip editor" style="display:none;width:600px;height:600px;max-width:1024px;background-color:#fff;" draggable="true">
+        <div class="container editor-form">
+            <legend>定义可编辑内容
+                <a type="button" class="close-custom">×</a>
+            </legend>
+
+            <table style="display:none;">
+                <thead>
+                    <tr>
+                        <td>选择器</td>
+                        <td>典型值</td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+            <form class="form-horizontal">
+                <div class="form-container">
+                    <div class="container">
+
+                        <div class="control-group">
+                            <label class="control-label" for="selector">选择器</label>
+                            <div class="controls">
+                                <input type="text" id="selector" placeholder="p.content">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="TypeValue">典型值</label>
+                            <div class="controls">
+                                <input type="text" id="TypeValue" placeholder="乐高组件">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="module-container">
+                    <div class="form-actions">
+                        <button id="SaveButton" type="button" class="btn btn-orange btn-large">提交</button>
+                        <button id="PreviewButton" type="button" class="btn btn-orange btn-large">预览</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="editor-preview" style="display:none;">
+            <button id="BackButton" type="button" class="btn btn-orange btn-large">预览</button>
+        </div>
+    </div>
+
 </body>
+
 <script>
     $(function () {
         var $tip = $('#ToolTip');
+        var $editor = $('#WidgetEditor');
+        var timerId;
+        var timeoutValue = 2500;
+        var showFlag = true;
+        var stopTimeout = function () {
+            if (timerId) {
+                clearTimeout(timerId);
+                timerId = null;
+            }
+        };
+
+        var SPACE_WIDTH = 50;
+        var SPACE_HEIGHT = 20;
+
         $('[data-cms]').each(function (key, value) {
             var $dom = $(value);
+
             $dom.css('border-color', 'red').css('border-style', 'solid').css('border-width', '1px');
             $dom.on('hover', function () {
                 var $dom = $(this);
+
+                if (!showFlag) return;
+
+                console.log('Hover in DOM!');
+                stopTimeout();
                 $tip.css('left', $dom.position().left)
                     .css('top', $dom.position().top)
                     .show();
-            }).on('mouseout', function () {
-                // $tip.hide();
             });
+
+            /*
+            .on('mouseout', function () {
+                console.log('Hover out DOM!');
+                stopTimeout();
+                timerId = setTimeout(function () {
+                    $tip.hide();
+                }, timeoutValue);
+            });
+            */
         });
+
+        $tip.on('hover', function (event) {
+            console.log('Hover in tip!');
+            stopTimeout();
+        });
+
+        /*
+        .on('mouseout', function (event) {
+            console.log('Hover out tip!');
+            stopTimeout();
+            timerId = setTimeout(function () {
+                $tip.hide();
+            }, timeoutValue);
+        });
+        */
 
         $('#TipHide').on('click', function () {
             $tip.hide();
+            showFlag = false;
+            setTimeout(function () {
+                showFlag = true;
+            }, 2000);
+        });
+
+        $('#EditWidget').on('click', function () {
+            $editor.css('left', $(document).width() - $editor.width() - SPACE_WIDTH)
+                .css('top', $(document).height() - $editor.height() - SPACE_HEIGHT)
+                .show();
+        });
+
+        $('#WidgetEditor').find('.close-custom').on('click', function () {
+            $editor.hide();
+        });
+
+        $('#BackButton').on('click', function () {
+            var $container = $('#WidgetEditor');
         });
     });
 </script>

@@ -70,6 +70,12 @@ body {
 .editor .container {
     width: 600px;
 }
+.editor legend {
+    margin-bottom: 10px;
+}
+.editor .title-container {
+    margin-bottom: 10px;
+}
 </style>
 </head>
 
@@ -136,37 +142,49 @@ body {
     </div>
 
     <div id="WidgetEditor" class="ui-tooltip editor" style="display:none;width:600px;height:600px;max-width:1024px;background-color:#fff;" draggable="true">
-        <div class="container editor-form">
-            <legend>定义可编辑内容
-                <a type="button" class="close-custom">×</a>
-            </legend>
+        <legend>定义可编辑内容
+            <a type="button" class="close-custom">×</a>
+        </legend>
 
-            <table style="display:none;">
-                <thead>
-                    <tr>
-                        <td>选择器</td>
-                        <td>典型值</td>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+        <div class="title-container">
+            <span class="label label-info" id="EditorTitle"></span>
+        </div>
+
+        <div class="container editor-form">
 
             <form class="form-horizontal">
+                <div class="current-items-container">
+                    <table class="table table-bordered">
+                        <thead><tr>
+                            <td>选择器</td>    
+                            <td>数据源</td>    
+                            <td>描述</td>    
+                        </tr></thead>
+                        <tbody id="DataList"></tbody>
+                    </table>
+                </div>
+
                 <div class="form-container">
                     <div class="container">
 
                         <div class="control-group">
                             <label class="control-label" for="selector">选择器</label>
                             <div class="controls">
-                                <input type="text" id="selector" placeholder="p.content">
+                                <input type="text" id="selector" placeholder="p">
                             </div>
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label" for="TypeValue">典型值</label>
+                            <label class="control-label" for="DataSource">数据源</label>
                             <div class="controls">
-                                <input type="text" id="TypeValue" placeholder="乐高组件">
+                                <input type="text" id="DataSource" placeholder="data.content">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="DataDescription">描述</label>
+                            <div class="controls">
+                                <input type="text" id="DataDescription" placeholder="内容说明">
                             </div>
                         </div>
 
@@ -184,7 +202,15 @@ body {
         </div>
 
         <div class="editor-preview" style="display:none;">
-            <button id="BackButton" type="button" class="btn btn-orange btn-large">预览</button>
+            <table class="table table-bordered">
+                <thead><tr>
+                    <td>描述</td>    
+                    <td>数据</td>    
+                </tr></thead>
+                <tbody id="DataPreview"></tbody>
+            </table>
+
+            <a id="BackButton" class="btn btn-orange btn-large" href="#"><i class="icon-arrow-left"></i>返回</a>
         </div>
     </div>
 
@@ -194,18 +220,31 @@ body {
     $(function () {
         var $tip = $('#ToolTip');
         var $editor = $('#WidgetEditor');
-        var timerId;
-        var timeoutValue = 2500;
+        var currentWidgetTag;
         var showFlag = true;
-        var stopTimeout = function () {
-            if (timerId) {
-                clearTimeout(timerId);
-                timerId = null;
-            }
-        };
+        var currentWidgetId;
 
         var SPACE_WIDTH = 50;
         var SPACE_HEIGHT = 20;
+
+        var updateDataList = function (id) {
+            var dataListHtmlStr = '';
+            var localData = window.localStorage[currentWidgetId];
+            var dataList = localData ? JSON.parse(localData) : [];
+
+            if (localData) {
+                $.each(dataList, function (key, value) {
+                    dataListHtmlStr += '<tr><td>' + decodeURI(value['selector']) + '</td><td>'
+                                       + value['dataSource'] + '</td><td>'
+                                       + value['description'] + '</td></tr>';
+                });
+
+                $('#DataList').html(dataListHtmlStr);
+                $('.current-items-container').show();
+            } else {
+                $('.current-items-container').hide();
+            }
+        };
 
         $('[data-cms]').each(function (key, value) {
             var $dom = $(value);
@@ -216,38 +255,13 @@ body {
 
                 if (!showFlag) return;
 
+                currentWidgetTag = $dom.attr('data-cms');
                 console.log('Hover in DOM!');
-                stopTimeout();
                 $tip.css('left', $dom.position().left)
                     .css('top', $dom.position().top)
                     .show();
             });
-
-            /*
-            .on('mouseout', function () {
-                console.log('Hover out DOM!');
-                stopTimeout();
-                timerId = setTimeout(function () {
-                    $tip.hide();
-                }, timeoutValue);
-            });
-            */
         });
-
-        $tip.on('hover', function (event) {
-            console.log('Hover in tip!');
-            stopTimeout();
-        });
-
-        /*
-        .on('mouseout', function (event) {
-            console.log('Hover out tip!');
-            stopTimeout();
-            timerId = setTimeout(function () {
-                $tip.hide();
-            }, timeoutValue);
-        });
-        */
 
         $('#TipHide').on('click', function () {
             $tip.hide();
@@ -258,17 +272,105 @@ body {
         });
 
         $('#EditWidget').on('click', function () {
+            currentWidgetId = currentWidgetTag;
+            updateDataList(); 
+
+            $('#EditorTitle').html(currentWidgetId);
             $editor.css('left', $(document).width() - $editor.width() - SPACE_WIDTH)
                 .css('top', $(document).height() - $editor.height() - SPACE_HEIGHT)
                 .show();
+        });
+
+        $('#SaveButton').on('click', function () {
+            var localData = window.localStorage[currentWidgetId];
+            var dataList = localData ? JSON.parse(localData) : [];
+            var newLineHtml = '';
+            var newDataObj = {};
+            var foundOut = false;
+
+            newDataObj['selector'] = encodeURI($('#selector').val());
+            newDataObj['dataSource'] = $('#DataSource').val();
+            newDataObj['description'] = $('#DataDescription').val();
+
+            $.each(dataList, function (key, value) {
+                if (value.selector == newDataObj.selector) {
+                    dataList[key]['dataSource'] = newDataObj['dataSource'];
+                    dataList[key]['description'] = newDataObj['description'];
+                    foundOut = true; 
+                }
+            });
+
+            if (!foundOut) {
+                dataList.push(newDataObj); 
+
+                newLineHtml += '<tr><td>' + decodeURI($('#selector').val()) + '</td><td>'
+                            + $('#DataSource').val() + '</td><td>'
+                            + $('#DataDescription').val() + '</td></tr>';
+                $('#DataList').append(newLineHtml);
+            } else {
+                updateDataList(); 
+            }
+
+            window.localStorage.setItem(currentWidgetId, JSON.stringify(dataList));
+            $('.current-items-container').show();
         });
 
         $('#WidgetEditor').find('.close-custom').on('click', function () {
             $editor.hide();
         });
 
+        $('#PreviewButton').on('click', function () {
+            $('.editor-preview').show();
+            $('.editor-form').hide();
+
+            var previewDataHtmlStr = '';
+            var $container = $('.editor-preview');
+            var $content = $container.find('#DataPreview');
+            var $table = $container.find('table');
+
+            var localData = window.localStorage[currentWidgetId];
+            var dataList = localData ? JSON.parse(localData) : [];
+
+            if (localData) {
+                var $widget = $('[data-cms="' + currentWidgetId + '"]');
+
+                $.each(dataList, function (key, value) {
+                    var selector = decodeURI(value.selector);
+                    var content = $widget.find(selector).html();
+
+                    previewDataHtmlStr += '<tr><td>' + value['description'] + '</td><td>'
+                                       + '<input type="text" class="data-preview" /><input type="hidden" class="data-selector" value="' + value['selector'] + '"/>' + '</tr>';
+                });
+
+                $('#DataPreview').html(previewDataHtmlStr);
+
+                $('#DataPreview').find('tr').each(function (key, value) {
+                    var selector = decodeURI(dataList[key]['selector']);
+                    var content = $widget.find(selector).html();
+                    var $input = $(value).find('.data-preview');
+
+                    $input.val(content);
+                });
+
+                $container.find('.data-preview').on('keyup', function (event) {
+                    var $target = $(event.target);
+                    var $tr = $target.parent().parent();
+                    var content = $tr.find('.data-preview').val();
+                    var selector = $tr.find('.data-selector').val();
+
+                    $widget.find(decodeURI(selector)).html(content);
+                });
+
+                $table.show();
+            } else {
+                $table.hide();
+            }
+        });
+
         $('#BackButton').on('click', function () {
             var $container = $('#WidgetEditor');
+            $('.editor-preview').hide();
+            $('.editor-form').show();
         });
     });
 </script>

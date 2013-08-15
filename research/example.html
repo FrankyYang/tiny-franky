@@ -76,6 +76,10 @@ body {
 .editor .title-container {
     margin-bottom: 10px;
 }
+.editor #EditSource {
+    position: relative;
+    top: 3px;
+}
 </style>
 </head>
 
@@ -148,6 +152,7 @@ body {
 
         <div class="title-container">
             <span class="label label-info" id="EditorTitle"></span>
+            <a href="#" id="EditSource">编辑源码</a>
         </div>
 
         <div class="container editor-form">
@@ -199,6 +204,9 @@ body {
                 </div>
 
             </form>
+
+            <div class="sourcecode-editor" style="display:none;">
+            </div>
         </div>
 
         <div class="editor-preview" style="display:none;">
@@ -279,6 +287,8 @@ body {
             $editor.css('left', $(document).width() - $editor.width() - SPACE_WIDTH)
                 .css('top', $(document).height() - $editor.height() - SPACE_HEIGHT)
                 .show();
+
+            $('.editor').find('.form-container input').val('');
         });
 
         $('#SaveButton').on('click', function () {
@@ -371,6 +381,11 @@ body {
             var $container = $('#WidgetEditor');
             $('.editor-preview').hide();
             $('.editor-form').show();
+        });
+
+        $('#EditSource').on('click', function () {
+            // TODO: Init and show the CodeMirror here
+            // TODO: Replace the htmlContent with the dataSource that defined, difficult point here!!!
         });
     });
 </script>

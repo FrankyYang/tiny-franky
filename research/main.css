@@ -1,0 +1,87 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+.hero-appicon {
+    background: #eee;
+    border-radius: 6px;
+    margin-bottom: 30px;
+    padding: 20px 60px 60px;
+}
+.appicon {
+    overflow:hidden;
+}
+.appicon ul {
+    width: 110%;
+}
+.appicon li {
+    list-style: none;
+    float: left;
+    display: inline;
+    margin: 40px 40px 0 0;
+}
+/**
+ * 表单相关的样式
+ */
+.form-container {
+  border: 1px solid #cdcdcd;
+  background-color: rgba(252, 248, 248, 0.47);
+  margin-bottom: 15px;
+  width: 600px;
+}
+
+.form-container hr.dotted {
+    margin: 10px 0;
+    border: 0;
+    border-top: 1px dashed #bfbfbf;
+    border-bottom: 1px dashed #ffffff;
+}
+
+.form-container .container .form-inline {
+    margin: 0;
+}
+
+.form-container .container, .form-container .module-container {
+    margin: 20px;
+}
+
+.form-horizontal .form-actions {
+    background-color: white;
+    border: 0;
+    width: 420px;
+}
+.editor {
+    width: 600px;
+    height: 600px;
+    max-width: 1024px;
+    background-color: #fff;
+}
+.editor .close-custom {
+    right: -420px;
+    position: relative;
+}
+.editor .container {
+    width: 600px;
+}
+.editor legend {
+    margin-bottom: 10px;
+}
+.editor .title-container {
+    margin-bottom: 10px;
+}
+.editor #EditSource,
+.editor #EditorBack {
+    position: relative;
+    top: 3px;
+}
+.editor .CodeMirror {
+    border-top: 1px solid #888;
+    border-bottom: 1px solid #888;
+    position: relative;
+}
+.editor #CodeEditor {
+    position: relative;
+}
+.hide {
+    display: none;
+}

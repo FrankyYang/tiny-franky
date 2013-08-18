@@ -27,86 +27,10 @@
 <!-- Velocity related libs -->
 <script src="../public/javascripts/kissy.js" charset="utf-8"></script>
 
-<style type="text/css">
-body {
-    padding-top: 60px;
-    padding-bottom: 40px;
-}
-.hero-appicon {
-    background: #eee;
-    border-radius: 6px;
-    margin-bottom: 30px;
-    padding: 20px 60px 60px;
-}
-.appicon {
-    overflow:hidden;
-}
-.appicon ul {
-    width: 110%;
-}
-.appicon li {
-    list-style: none;
-    float: left;
-    display: inline;
-    margin: 40px 40px 0 0;
-}
-/**
- * 表单相关的样式
- */
-.form-container {
-  border: 1px solid #cdcdcd;
-  background-color: rgba(252, 248, 248, 0.47);
-  margin-bottom: 15px;
-  width: 600px;
-}
+<!-- My js and css code -->
+<script src="main.js" charset="utf-8"></script>
+<link rel="stylesheet" href="main.css">
 
-.form-container hr.dotted {
-    margin: 10px 0;
-    border: 0;
-    border-top: 1px dashed #bfbfbf;
-    border-bottom: 1px dashed #ffffff;
-}
-
-.form-container .container .form-inline {
-    margin: 0;
-}
-
-.form-container .container, .form-container .module-container {
-    margin: 20px;
-}
-
-.form-horizontal .form-actions {
-    background-color: white;
-    border: 0;
-    width: 420px;
-}
-.editor .close-custom {
-    right: -420px;
-    position: relative;
-}
-.editor .container {
-    width: 600px;
-}
-.editor legend {
-    margin-bottom: 10px;
-}
-.editor .title-container {
-    margin-bottom: 10px;
-}
-.editor #EditSource,
-.editor #EditorBack {
-    position: relative;
-    top: 3px;
-}
-.editor .CodeMirror {
-    border-top: 1px solid #888;
-    border-bottom: 1px solid #888;
-    position: relative;
-}
-.editor #CodeEditor {
-    position: relative;
-}
-</style>
 </head>
 
 <body>
@@ -162,7 +86,7 @@ body {
         </footer>
     </div>
 
-    <div id="ToolTip" class="ui-tooltip progress-border" style="display:none;" draggable="true">
+    <div id="ToolTip" class="ui-tooltip progress-border hide" draggable="true">
         <div class="btn-group">
             <button class="btn btn-primary btn-mini" id="EditWidget">编辑</button>
             <button class="btn btn-info btn-mini">删除</button>
@@ -171,26 +95,27 @@ body {
         </div>
     </div>
 
-    <div id="WidgetEditor" class="ui-tooltip editor" style="display:none;width:600px;height:600px;max-width:1024px;background-color:#fff;" draggable="true">
+    <div id="WidgetEditor" class="ui-tooltip editor hide" draggable="true">
         <legend>定义可编辑内容
             <a type="button" class="close-custom">×</a>
         </legend>
 
         <div class="title-container">
             <span class="label label-info" id="EditorTitle"></span>
-            <a href="#" id="EditSource">编辑源码</a>
-            <a href="#" id="EditorBack" style="display:none;">返回</a>
+            <a href="javascript:" id="EditSource">编辑源码</a>
+            <a href="javascript:" id="EditorBack" class="hide">返回</a>
         </div>
 
         <div class="container editor-form">
 
-            <form class="form-horizontal">
+            <form class="form-horizontal data-form">
                 <div class="current-items-container">
                     <table class="table table-bordered">
                         <thead><tr>
-                            <td>选择器</td>
-                            <td>数据源</td>
                             <td>描述</td>
+                            <td>数据源</td>
+                            <td>选择器</td>
+                            <td>典型值</td>
                         </tr></thead>
                         <tbody id="DataList"></tbody>
                     </table>
@@ -200,6 +125,20 @@ body {
                     <div class="container">
 
                         <div class="control-group">
+                            <label class="control-label" for="DataDescription">描述</label>
+                            <div class="controls">
+                                <input type="text" id="DataDescription" placeholder="内容说明">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="DataSource">数据源</label>
+                            <div class="controls">
+                                <input type="text" id="DataSource" placeholder="title">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
                             <label class="control-label" for="selector">选择器</label>
                             <div class="controls">
                                 <input type="text" id="selector" placeholder="p">
@@ -207,16 +146,9 @@ body {
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label" for="DataSource">数据源</label>
+                            <label class="control-label" for="TypeValue">典型值</label>
                             <div class="controls">
-                                <input type="text" id="DataSource" placeholder="data.content">
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label" for="DataDescription">描述</label>
-                            <div class="controls">
-                                <input type="text" id="DataDescription" placeholder="内容说明">
+                                <input type="text" id="TypeValue" placeholder="Welcome to my site!">
                             </div>
                         </div>
 
@@ -232,13 +164,13 @@ body {
 
             </form>
 
-            <div class="sourcecode-editor" style="display:none;">
+            <div class="sourcecode-editor hide">
                 <div id="CodeEditor"></div>
-                <a href="#" class="btn" id="ToHtml">html解析</a>
+                <a href="javascript:" class="btn" id="ToHtml">html解析</a>
             </div>
         </div>
 
-        <div class="editor-preview" style="display:none;">
+        <div class="editor-preview hide">
             <table class="table table-bordered">
                 <thead><tr>
                     <td>描述</td>
@@ -247,238 +179,50 @@ body {
                 <tbody id="DataPreview"></tbody>
             </table>
 
-            <a id="BackButton" class="btn btn-orange btn-large" href="#"><i class="icon-arrow-left"></i>返回</a>
+            <a id="BackButton" class="btn btn-orange btn-large" href="javascript:"><i class="icon-arrow-left"></i>返回</a>
         </div>
     </div>
 
+    <div class="hide" id="TempDiv"></div>
 </body>
-
-<script>
-    CodeMirror.commands.autocomplete = function(cm) {
-        CodeMirror.showHint(cm, CodeMirror.hint.html);
-    }
-
-    $(function () {
-        var $tip = $('#ToolTip');
-        var $editor = $('#WidgetEditor');
-        var currentWidgetTag;
-        var showFlag = true;
-        var currentWidgetId;
-
-        var SPACE_WIDTH = 50;
-        var SPACE_HEIGHT = 20;
-
-        var updateDataList = function (id) {
-            var dataListHtmlStr = '';
-            var localData = window.localStorage[currentWidgetId];
-            var dataList = localData ? JSON.parse(localData) : [];
-
-            if (localData) {
-                $.each(dataList, function (key, value) {
-                    dataListHtmlStr += '<tr><td>' + decodeURI(value['selector']) + '</td><td>'
-                                       + value['dataSource'] + '</td><td>'
-                                       + value['description'] + '</td></tr>';
-                });
-
-                $('#DataList').html(dataListHtmlStr);
-                $('.current-items-container').show();
-            } else {
-                $('.current-items-container').hide();
-            }
-        };
-
-        var switchPanel = function (id) {
-            switch (id) {
-                case 'preview':
-                    $('.editor-preview').show();
-                    $('.editor-form').hide();
-                    break;
-                case 'form':
-                    $('.editor-preview').hide();
-                    $('.editor-form').show();
-
-                    $('.sourcecode-editor').hide();
-                    $('#EditorBack').hide();
-                    $('#EditSource').show();
-                    $('.editor-form form').show();
-                    break;
-                case 'editor':
-                    $('.editor-preview').hide();
-                    $('.editor-form').show();
-
-                    $('.sourcecode-editor').show();
-                    $('#EditorBack').show();
-                    $('#EditSource').hide();
-                    $('.editor-form form').hide();
-                    break;
-            }
-        };
-
-        $('[data-cms]').each(function (key, value) {
-            var $dom = $(value);
-
-            $dom.css('border-color', 'red').css('border-style', 'solid').css('border-width', '1px');
-            $dom.on('hover', function () {
-                var $dom = $(this);
-
-                if (!showFlag) return;
-
-                currentWidgetTag = $dom.attr('data-cms');
-                console.log('Hover in DOM!');
-                $tip.css('left', $dom.position().left)
-                    .css('top', $dom.position().top)
-                    .show();
-            });
-        });
-
-        $('#TipHide').on('click', function () {
-            $tip.hide();
-            showFlag = false;
-            setTimeout(function () {
-                showFlag = true;
-            }, 2000);
-        });
-
-        $('#EditWidget').on('click', function () {
-            switchPanel('preview');
-            currentWidgetId = currentWidgetTag;
-            updateDataList();
-
-            $('#EditorTitle').html(currentWidgetId);
-            $editor.css('left', $(document).width() - $editor.width() - SPACE_WIDTH)
-                .css('top', $(document).height() - $editor.height() - SPACE_HEIGHT)
-                .show();
-
-            $('.editor').find('.form-container input').val('');
-        });
-
-        $('#SaveButton').on('click', function () {
-            var localData = window.localStorage[currentWidgetId];
-            var dataList = localData ? JSON.parse(localData) : [];
-            var newLineHtml = '';
-            var newDataObj = {};
-            var foundOut = false;
-
-            newDataObj['selector'] = encodeURI($('#selector').val());
-            newDataObj['dataSource'] = $('#DataSource').val();
-            newDataObj['description'] = $('#DataDescription').val();
-
-            $.each(dataList, function (key, value) {
-                if (value.selector == newDataObj.selector) {
-                    dataList[key]['dataSource'] = newDataObj['dataSource'];
-                    dataList[key]['description'] = newDataObj['description'];
-                    foundOut = true;
-                }
-            });
-
-            if (!foundOut) {
-                dataList.push(newDataObj);
-
-                newLineHtml += '<tr><td>' + decodeURI($('#selector').val()) + '</td><td>'
-                            + $('#DataSource').val() + '</td><td>'
-                            + $('#DataDescription').val() + '</td></tr>';
-                $('#DataList').append(newLineHtml);
-            } else {
-                updateDataList();
-            }
-
-            window.localStorage.setItem(currentWidgetId, JSON.stringify(dataList));
-            $('.current-items-container').show();
-        });
-
-        $('#WidgetEditor').find('.close-custom').on('click', function () {
-            $editor.hide();
-        });
-
-        $('#PreviewButton').on('click', function () {
-            switchPanel('preview');
-
-            var previewDataHtmlStr = '';
-            var $container = $('.editor-preview');
-            var $content = $container.find('#DataPreview');
-            var $table = $container.find('table');
-
-            var localData = window.localStorage[currentWidgetId];
-            var dataList = localData ? JSON.parse(localData) : [];
-
-            if (localData) {
-                var $widget = $('[data-cms="' + currentWidgetId + '"]');
-
-                $.each(dataList, function (key, value) {
-                    var selector = decodeURI(value.selector);
-                    var content = $widget.find(selector).html();
-
-                    previewDataHtmlStr += '<tr><td>' + value['description'] + '</td><td>'
-                                       + '<input type="text" class="data-preview" /><input type="hidden" class="data-selector" value="' + value['selector'] + '"/>' + '</tr>';
-                });
-
-                $('#DataPreview').html(previewDataHtmlStr);
-
-                $('#DataPreview').find('tr').each(function (key, value) {
-                    var selector = decodeURI(dataList[key]['selector']);
-                    var content = $widget.find(selector).html();
-                    var $input = $(value).find('.data-preview');
-
-                    $input.val(content);
-                });
-
-                $container.find('.data-preview').on('keyup', function (event) {
-                    var $target = $(event.target);
-                    var $tr = $target.parent().parent();
-                    var content = $tr.find('.data-preview').val();
-                    var selector = $tr.find('.data-selector').val();
-
-                    $widget.find(decodeURI(selector)).html(content);
-                });
-
-                $table.show();
-            } else {
-                $table.hide();
-            }
-        });
-
-        $('#BackButton').on('click', function () {
-            switchPanel('form');
-        });
-
-        $('#EditSource').on('click', function () {
-            var $widget = $('[data-cms="' + currentWidgetId + '"]');
-            var text = $widget.html();
-
-            text = $.trim(text);
-            // TODO: Remove the '\r' and other things
-            console.log(text);
-
-            switchPanel('editor');
-
-            // TODO: Replace the htmlContent with the dataSource that defined, difficult point here!!!
-            editor.setValue(text);
-        });
-
-        $('#EditorBack').on('click', function () {
-            switchPanel('form');
-        });
-
-        $('#ToHtml').on('click', function () {
-            KISSY.use('velocity/index, velocity/parse', function(S, Velocity, Parser){
-                // var html = (S.all('#tpl').html());
-                var html = editor.getValue();
-                var asts = Parser.parse(html);
-                var compile = new Velocity(asts);
-
-                console.log(compile.render());
-            });
-        });
-
-        var editor = CodeMirror(document.getElementById("CodeEditor"), {
-            mode: "text/html",
-            lineNumbers: true,
-            indentUnit: 0,
-            smartIndent: false,
-            autofocus: true,
-            extraKeys: {"Ctrl-Space": "autocomplete"},
-            value: '<p>Loading...</p>'
-        });
-    });
-</script>
 </html>
+
+<!-- Set the fake data value to simulate the user action -->
+<!--
+<div id="DataSet">
+    <table class="table table-bordered">
+        <thead><tr>
+            <td>数据</td>
+            <td>值</td>
+        </tr></thead>
+        <tbody id="FakeDataList"></tbody>
+    </table>
+
+    <form class="form-horizontal">
+        <div class="fake-data-container">
+            <div class="container">
+
+                <div class="control-group">
+                    <label class="control-label" for="FakeData">数据</label>
+                    <div class="controls">
+                        <input type="text" id="FakeData" placeholder="title">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="FakeValue">值</label>
+                    <div class="controls">
+                        <input type="text" id="FakeValue" placeholder="Welcome to visit this site!">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module-container">
+            <div class="form-actions">
+                <button id="SaveFakeData" type="button" class="btn btn-orange btn-large">保存</button>
+            </div>
+        </div>
+    </form>
+</div>
+-->

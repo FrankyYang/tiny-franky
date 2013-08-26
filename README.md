@@ -1,4 +1,4 @@
-tiny-franky
+CMS-EJS
 ===========
 
-Franky's little world, far from the crowd.
+A CMS content management system that base on express, use ejs as frontend template.

@@ -1,0 +1,27 @@
+<table class="table table-bordered table-striped" id="DataList">
+    <thead>
+        <tr>
+            <th>标题</th>
+            <th>内容</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% posts && posts.forEach(function(post, index) { %>
+            <tr>
+                <% if (post.title) { %>
+                    <td><%= post.title %></td>
+                <% } %>
+                <% if (post.content) { %>
+                    <td><%= post.content%></td>
+                <% } %>
+                <% if (post.title) { %>
+                    <td>
+                        <button class="btn btn-danger delete" id="<%= post.title %>">删除</button>
+                        <button class="btn btn-info edit" id="<%= post.title %>">编辑</button>
+                    </td>
+                <% } %>
+            </tr>
+        <%}) %>
+    </tbody>
+</table>

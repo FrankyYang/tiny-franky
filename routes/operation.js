@@ -68,7 +68,7 @@ var _self = {
         console.log(req.body);
         console.log(req.files);
 
-        var rootDir = "./uploads/UserDataRootDir/";
+        var rootDir = "./public/pages/";
         // get the temporary location of the file
         var tmp_path = req.files.thumbnail.path;
         // set where the file should actually exists - in this case it is in the "images" directory
@@ -88,7 +88,7 @@ var _self = {
                 }
 
                 req.session.success = gConfig.operation.fileUploadSuccess;
-                return res.redirect('/upload');
+                return res.redirect('/');
                 // res.send('File uploaded to: ' + target_path + ' - ' + req.files.thumbnail.size + ' bytes');
             });
         });

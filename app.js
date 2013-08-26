@@ -41,7 +41,7 @@ app.configure(function(){
     app.use(express.favicon(__dirname + '/public/images/icon.png'));
     app.use(express.logger('dev'));
     app.use(express.bodyParser({
-        uploadDir: './uploads'
+        uploadDir: './public/pages'
     }));
     app.use(express.methodOverride());
     app.use(express.cookieParser());

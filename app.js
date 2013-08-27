@@ -17,11 +17,10 @@
 var express = require('express');
 var http = require('http');
 var MongoStore = require('connect-mongo')(express);
-var partials = require('express-partials');
+// var partials = require('express-partials');
 
 var userRoutes = require('./routes/user');
 var operationRoutes = require('./routes/operation');
-var postRoutes = require('./routes/post');
 
 var settings = require('./settings');
 
@@ -37,7 +36,7 @@ app.configure(function(){
     app.set('views', __dirname + '/views');
     app.set('view engine', 'ejs');
 
-    app.use(partials());
+    // app.use(partials());
     app.use(express.favicon(__dirname + '/public/images/icon.png'));
     app.use(express.logger('dev'));
     app.use(express.bodyParser({
@@ -72,9 +71,7 @@ app.get('/logout', userRoutes.logout);
 
 app.get('/upload', operationRoutes.upload);
 app.post('/file-upload', operationRoutes.fileUpload);
-
-app.post('/post', postRoutes.write);
-app.post('/operation', postRoutes.operation);
+app.post('/operation', operationRoutes.operation);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port'));

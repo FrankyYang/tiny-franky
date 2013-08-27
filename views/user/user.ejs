@@ -1,4 +1,13 @@
-<% if (user) { %>
-    <%- partial('./operation/fileupload') %>
-<% } %>
-<%- partial('./post/posts', {posts:posts}) %> 
+<%- include ../widget/header %>
+
+<div id="MainContainer" class="container">
+    <%- include ../widget/info %>
+
+    <% if (user) { %>
+        <%- include ../operation/fileupload %>
+    <% } %>
+
+    <%- include ../widget/fileInfoTable %> 
+</div>
+
+<%- include ../widget/footer %>

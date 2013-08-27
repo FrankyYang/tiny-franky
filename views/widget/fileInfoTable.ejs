@@ -1,0 +1,23 @@
+<table class="table table-bordered table-striped" id="DataList">
+    <thead>
+        <tr>
+            <th>文件全路径</th>
+            <th>修改时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% fileInfoList && fileInfoList.forEach(function(fileInfo, index) { %>
+            <% if (fileInfo.name && fileInfo.lastEditTime) { %>
+                <tr>
+                    <td><%= fileInfo.name %></td>
+                    <td><%= fileInfo.lastEditTime %></td>
+                    <td>
+                        <button class="btn btn-danger delete" id="<%= fileInfo.name %>">删除</button>
+                        <!-- <button class="btn btn-info edit" id="<%= fileInfo.name %>">编辑</button> -->
+                    </td>
+                </tr>
+            <% } %>
+        <%}) %>
+    </tbody>
+</table>

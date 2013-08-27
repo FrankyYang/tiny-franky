@@ -1,1 +1,1 @@
-npm install express express-partials ejs mongodb connect-mongo
+npm install express ejs mongodb connect-mongo

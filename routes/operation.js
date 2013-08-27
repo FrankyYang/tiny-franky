@@ -20,10 +20,7 @@ var User = require('../models/user'); // Save the user info of this website
 var Post = require('../models/post'); // Save the content that the user posted
 var gConfig = require('./config');
 
-// Only for this project to render, as the title, user, success and error
-// are needed in the index.ejs template, so we make a function here to
-// make the render process simplier
-function _render(templateName, req, res, title, moreParams) {
+var _render = function (templateName, req, res, name, moreParams) {
     var renderObj = {};
     var key;
     var isEmptyObj = function (obj) {
@@ -38,7 +35,7 @@ function _render(templateName, req, res, title, moreParams) {
     var _moreParams = moreParams || {};
     var user = req.session.user;
 
-    renderObj.title = title || '';
+    renderObj.name = name || '';
     renderObj.user = isEmptyObj(user) ? null : user;
     renderObj.success = req.session.success;
     renderObj.error = req.session.error;
@@ -54,7 +51,51 @@ function _render(templateName, req, res, title, moreParams) {
     res.render(templateName, renderObj);
 }
 
+var _writeLog = function (name, time, userName, isUpdate, callback) {
+    var post = new Post(name, time, userName);
+    
+    if (isUpdate) {
+        post.update({name: name}, callback);
+    } else {
+        post.save(callback);
+    }
+};
+
+var _getLog = function () {
+};
+
 var _self = {
+
+    // Response the delete row operation from the client side
+    // Here we remove that data from database
+    operation: function(req, res) {
+        var filePath = req.body.urlvalue;
+        var operation = req.body.operation;
+        var fs = require('fs');
+
+        if (operation && operation == "delete") {
+            // delete the temporary file
+            fs.unlink(filePath, function(err) {
+                if (err) {
+                    console.log(err);
+                    req.session.error = err;
+                    return;
+                }
+
+                Post.removeWithUrl(filePath, function (err) {
+                    if (err) {
+                        console.log("Remove file " + filePath + "has err: " + err);
+                        return;
+                    }
+                    res.redirect('/');
+                });
+
+                return res.redirect('/');
+            });
+            
+        }
+    },
+
     upload: function (req, res) {
         var user = req.session.user;
         if (user && user.name) {
@@ -65,31 +106,45 @@ var _self = {
     },
 
     fileUpload: function (req, res) {
-        console.log(req.body);
         console.log(req.files);
 
+        // var rootDir = dir || "./public/pages/";
         var rootDir = "./public/pages/";
-        // get the temporary location of the file
-        var tmp_path = req.files.thumbnail.path;
-        // set where the file should actually exists - in this case it is in the "images" directory
-        var target_path = rootDir + req.files.thumbnail.name;
+        var tempPath = req.files.thumbnail.path; // thumbnail is defined in frontend
+        var targetPath = rootDir + req.files.thumbnail.name;
         var fs = require('fs');
 
         // move the file from the temporary location to the intended location
-        fs.rename(tmp_path, target_path, function(err) {
+        fs.rename(tempPath, targetPath, function(err) {
             if (err) {
+                console.log('Renmae error!');
+                console.log(err);
                 req.session.error = err;
                 return res.redirect('/');
             }
-            // delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
-            fs.unlink(tmp_path, function() {
+
+            // delete the temporary file
+            fs.unlink(tempPath, function(err) {
+                var time = new Date();
+
                 if (err) {
+                    console.log(err);
                     req.session.error = err;
                 }
 
+                // Record the file upload info
+                _writeLog(targetPath, time, req.session.user.name, false, function (err) {
+                    if (err) {
+                        req.session.error = err;
+                        return res.redirect('/');
+                    }
+
+                    req.session.success = gConfig.post.postSuccess;
+                    res.redirect('/');
+                });
+
                 req.session.success = gConfig.operation.fileUploadSuccess;
                 return res.redirect('/');
-                // res.send('File uploaded to: ' + target_path + ' - ' + req.files.thumbnail.size + ' bytes');
             });
         });
     }

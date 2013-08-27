@@ -23,7 +23,6 @@ var gConfig = require('./config');
 // Util function for password check
 function _checkPasswd (passwd, passwdRepeat) {
     if (passwd != passwdRepeat) {
-        req.session.error = gConfig.user.twoCodeNotTheSame;
         return false;
     }
 
@@ -37,18 +36,16 @@ function _getPasswd(password) {
 }
 
 function _renderUserPosts(req, res, username) {
-    Post.get(username, function(err, posts) {
+    Post.get(username, function(err, list) {
         if (err) {
             req.session.error = err;
             return;
         }
-        _render('./user/user', req, res, username, {posts: posts});
+
+        _render('./user/user', req, res, username, {fileInfoList: list});
     });
 }
 
-// Only for this project to render, as the title, user, success and error
-// are needed in the index.ejs template, so we make a function here to
-// make the render process simplier
 function _render(templateName, req, res, title, moreParams) {
     var renderObj = {};
     var key;
@@ -86,9 +83,10 @@ var _self = {
     index: function (req, res) {
         var user = req.session.user;
         if (user && user.name) {
+            console.log('User name here is: ' + user.name);
             _renderUserPosts(req, res, user.name);
         } else {
-            _render('./home/index', req, res, gConfig.user.frontPageTitle, {posts: null});
+            _render('./home/index', req, res, gConfig.user.frontPageTitle, {fileInfoList: null});
         }
     },
 
@@ -144,6 +142,7 @@ var _self = {
     // Only generate the account for the new users
     doReg: function(req, res) {
         if (!_checkPasswd(req.body['password'], req.body['password-repeat'])) {
+            req.session.error = gConfig.user.twoCodeNotTheSame;
             return res.redirect('/reg');
         }
 

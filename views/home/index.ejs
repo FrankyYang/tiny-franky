@@ -1,13 +1,15 @@
-<% if (!user) { %>
-  <div class="hero-unit">
-    <h1>欢迎来到web应用广场</h1>
-    <p>Web APPs是一个展示各种有用的网络程序的地方。</p>
-    <p>
-      <a class="btn btn-primary btn-large" href="/login">登录</a>
-      <a class="btn btn-large" href="/reg">注册</a>
-    </p>
-  </div>
-<% } else { %>
-    <%- partial('./operation/fileupload') %>
-    <%- partial('./post/posts', {posts:posts}) %> 
-<% } %>
+<%- include ../widget/header %>
+<%- include ../widget/info %>
+
+<div id="MainContainer" class="container">
+    <div class="hero-unit">
+        <h1>欢迎来到spark模板管理系统</h1>
+        <p>Spark CMS是一个基于Nodejs-express的模板管理系统。</p>
+        <p>
+            <a class="btn btn-primary btn-large" href="/login">登录</a>
+            <a class="btn btn-large" href="/reg">注册</a>
+        </p>
+    </div>
+</div>
+
+<%- include ../widget/footer %>

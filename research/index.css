@@ -1,128 +1,101 @@
 @charset "utf-8";
 /* CSS Document */
-@import url("../../fragments/btns_new.css");
-@import url("../../cells/huiyuanfooter.css");
-div, ul, dl{zoom:1;}
-div:after, ul:after, dl:after{content:""; display:block; clear:both; height:0; visibility:hidden;}
-body{ background:#f2f2f2;}
-a{ color:#333;}
-.cqBg, .hyBg {background: url(http://www.qiyipic.com/common/fix/index_images/icon.png) no-repeat;height: 49px; position: absolute;right: 0;top: 0;width: 49px;}
-.hyBg {background-position: 0 -50px;}
-.mt10{ margin-top:10px;}
 
+div, ul, dl {
+    zoom: 1;
+}
 
-.detail .topDot h2{ font-size:14px;/*text-shadow:1px 1px #ddd;*/}
-.detail .second_newmenu{ padding:2px 0;}
-.detail .subNav{ border:none;}
-.detail .subNav a.selected,.detail .subNav a:hover{ color:#ffae00;}
-.detail .subNav a{ color:#efefef;}
+div:after, ul:after, dl:after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
 
-.indexWrap{ width:980px; margin:20px auto 0; font-family:"\5FAE\8F6F\96C5\9ED1";}
+body {
+    background: #f2f2f2;
+}
+
+a {
+    color: #333;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.indexWrap {
+    width: 980px;
+    margin: 20px auto 0;
+    font-family: "\5FAE\8F6F\96C5\9ED1";
+}
+
 /*left*/
-.indexWrap .lt{ width:730px; float:left;}
+.indexWrap .lt {
+    width: 730px;
+    float: left;
+}
+
 /*taocan*/
-.taocanPartA{background:#fff url(http://www.qiyipic.com/common/fix/huiyuan_new_images/taocanbg.png) no-repeat 48% 13px; border:5px solid #e8e8e8; height:153px;}
-.taocanPartA h2{ font-size:18px; padding:0 10px 20px 20px; color:#333;}
-.taocanPartA .bdimg{ float:left; width:80px; margin-right:5px;}
-.taocanPartA .bdr{ float:left; width:235px;}
-.taocanPartA .taocan1{ float:left; width:345px; margin:20px 0 0 0; position:relative; }
-.taocanPartA .bd{ margin-left:20px;}
-.taocanPartA .nobg{ border:none;}
-.taocan1 span a{ color:#EB6100; text-decoration:underline;}
-.taocan1 .c518{ font-size:18px; color:#518900; margin:5px 12px 0 0; float:left;}
-.taocan1 p{ color:#999;}
-.taocan1 .btn_new{ margin-top:4px; font-family:"\5B8B\4F53";}
+.taocanPartA {
+    background: #fff url(http://www.qiyipic.com/common/fix/huiyuan_new_images/taocanbg.png) no-repeat 48% 13px;
+    border: 5px solid #e8e8e8;
+    height: 153px;
+}
+
 /*gaokao taocan*/
-.gktaocan h2{ font-size:18px; background:url(http://www.qiyipic.com/common/fix/huiyuan_new_images/ftico.png) no-repeat 0 -356px; padding-left:28px; color:#333;}
-.gkblock{ padding:20px 0 21px 28px;}
-.gkblock .sline{ float:left;background:url(http://www.qiyipic.com/common/fix/huiyuan_new_images/ftico.png) no-repeat 0 -387px; width:3px; height:33px; margin-right:10px;}
-.gkblock .gktxt{ float:left; width:455px;}
-.gkblock .gktxt p{ margin:0; line-height:22px;}
-.gkblock .gktxt .p1{ font-size:14px; margin-top:-6px; position:relative;}
-.gkblock .pri{ float:left; width:100px; color:#333; margin-top:10px;}
-.bug{ float:left; font-family:"\5B8B\4F53"; margin-top:10px;}
-.gkwrap{ border-bottom:1px solid #e8e8e8;}
-.indexWrap .rt{ width:240px; float:right;}
+.indexWrap .rt {
+    width: 240px;
+    float: right;
+}
+
 /*newhd*/
-.newhd{ background:#fff; border:5px solid #e8e8e8;}
-.newhd h2{ font-size:14px; background:#f5f5f5; height:33px; line-height:33px; border:1px solid #fff; border-bottom:1px solid #e8e8e8; padding-left:15px; color:#333; }
-.newhd p { margin:10px 0 10px 10px;}
-.newhd p img{ border:1px solid #e8e8e8;}
-/*dongtai*/
-.newhd ul{ padding:0 0 0 10px;}
-.newhd ul li{ line-height:24px;}
-.newhd ul span{ color:#EB6100;}
+.newhd {
+    background: #fff;
+    border: 5px solid #e8e8e8;
+}
+
 /*right*/
 /*partA*/
-.hypartA{ margin-bottom:20px;}
-.hypartA .hylogin{ width:190px; height:328px; border:5px solid #e8e8e8; background:#fff; margin-right:10px; float:left;padding:0 20px;}
+.hypartA {
+    margin-bottom: 20px;
+}
+
+.hypartA .hylogin {
+    width: 190px;
+    height: 338px;
+    border: 5px solid #e8e8e8;
+    background: #fff;
+    margin-right: 10px;
+    float: left;
+    padding: 0 20px;
+}
+
 /*focus*/
-.hypartA .focus{ width:490px; height:338px; float:left; position:relative;}
-.hypartA .focusBg{width:100%;height:35px;background:#000;filter:alpha(opacity=60);opacity:.6;position:absolute;bottom:0;left:0;}
-.hypartA .f_txt{ position:absolute; font-size:12px; color:#fff; left:15px; bottom:6px;}
-.hypartA .f_tag{ position:absolute; right:10px; bottom:9px;}
-.hypartA .f_tag li{ float:left; margin-left:6px; display:inline;}
-.hypartA .f_tag a{ background:url(http://www.qiyipic.com/common/fix/huiyuan_new_images/ftico.png) no-repeat 0 -459px; width:14px; height:14px; line-height:14px; text-align:center; display:block; color:#000;}
-.hypartA .f_tag a.selected{ background-position:0 -475px;}
-.hypartA .f_tag a:hover{ color:#000; text-decoration:none;}
+.hypartA .focus {
+    width: 490px;
+    height: 338px;
+    float: left;
+    position: relative;
+}
+
 /*focus end*/
-.hypartA .recArea{ width:209px; background:#fff; border:1px solid #e8e8e8; border-left:none; height:326px; float:left; padding:0 10px 10px 20px ;}
-.recArea h2{ font-size:14px; color:#333; line-height:50px;}
-.recArea dl{ margin-bottom:17px;}
-.recArea dt{ float:left; width:50px; margin-right:8px;}
-.recArea dd{ float:left; width:145px; color:#999; line-height:24px;}
-.recArea li{ line-height:23px;}
-.recArea li em{ color:#EB6100; margin-right:7px;}
-/*user*/
-.hyLogin .loBtn{ margin-top:50px; text-align:center;}
-.hyLogin .loBtn .left_pd{ padding-left:35px;}
-.hyLogin .loBtn .btn_new{ padding-right:35px;}
-.hyLogin .newUser{ text-align:center; margin-top:10px;}
-.hyLogin .newUser a{color:#666; text-decoration:none;}
-.hyLogin .newUser a:hover{color:#518900; text-decoration:underline;}
-.hyLogin .newUser .fgx-hy{ color:#c3c3c3; margin:0 8px;}
-.hyLogin .lineBg{background:url(http://www.qiyipic.com/common/fix/huiyuan_new_images/dexuline.png) repeat-x 0 bottom; padding:30px 0 0 0;}
-.hyLogin .recText{ color:#333; margin-top:16px; }
-.hyLogin .recText1{ color:#333;}
-.hyLogin .lookxq{text-align:right; padding-right:3px;}
-.hyLogin .lookxq a{ color:#518900; }
-.hyLogin .kt_hy{ margin:14px 0 0 10px;}
-.hyLogin .kt_hy .left_pd{ padding-left:45px;}
-.hyLogin .kt_hy .btn_new{ padding-right:40px;}
-.hyLogin .lonohy dt img{border-radius:2px;}
-.hyLogin .lonohy{ margin-top:22px;}
-.hyLogin .lonohy dt{ float:left; margin-right:10px;}
-.hyLogin .lonohy dd{ color:#333; float:left; width:120px; line-height:18px;}
-.hyLogin .kt_hy1{ margin:60px 0 0 10px;}
-.hyLogin em{ color:#EB6100;}
-.hyLogin .mytc{ background:url(http://www.qiyipic.com/common/fix/huiyuan_new_images/viptc.png) no-repeat; width:84px; height:30px; line-height:21px; padding-left:18px; color:#fff; margin-left:-28px; margin-top:18px; position:relative;}
-.hyLogin .tcCon{ margin-left:18px;}
-.hyLogin .xfhyBtn,.hyLogin .syday{text-align:center; color:#999;}
-.hyLogin .syday em{ margin-right:0;}
-.hyLogin .syday{ line-height:14px;}
-.hyLogin ul{ text-align:center; margin-top:10px;}
-.hyLogin ul li{background:url(http://www.qiyipic.com/common/fix/huiyuan_new_images/dexuline.png) repeat-x 0 top; line-height:35px;}
-.hyLogin .more{ text-align:right;}
-.hyLogin .a1{ color:#EB6100; text-decoration:underline;}
-.hyLogin .a2{ color:#518900; }
-.hyLogin .shengji{ color:#999; margin-right:-10px; position:relative;}
-/*btn position*/
-.taocanPartA .taocan1 .c518{ position:absolute; left:105px; top:82px;}
-.taocanPartA .taocan1 .btn_new{ position:absolute; left:195px; top:83px;}
-.taocanPartA .nobg .c518{ position:absolute; left:105px; top:82px;}
-.taocanPartA .nobg .btn_new{ position:absolute; left:185px; top:83px;}
-.taocanPartA .taocan1 .gdbtn{ background:url(http://www.qiyipic.com/common/fix/huiyuan_new_images/gdbtn02.png) no-repeat; width:70px; height:22px; text-align:center; line-height:22px;left: 195px;position: absolute;top: 83px; color:#fff; text-shadow:0 1px 1px rgba(0, 0, 0, 0.3); margin-top:4px;}
-.taocanPartA .taocan1 .gdbtn:hover{color:#fff; text-shadow:0 1px 1px rgba(0, 0, 0, 0.3); text-decoration:none; background-position:0 -24px;}
-.taocanPartA .taocan1 .gdbtn:active{ background-position:0 -48px;}
-.taocanPartA .nobg .gdbtn{left: 185px;}
-/*hotIco*/
-.taocanPartA .taocan1 .hotIco{ position:absolute; top:-20px; right:20px; background:url(http://www.qiyipic.com/common/fix/huiyuan_new_images/hotIco.png) no-repeat; width:61px; height:37px;}
-.taocanPartA .taocan1 .prominent{ color:#eb6100; font-family:"\5FAE\8F6F\96C5\9ED1"; font-size:16px; line-height:35px;}
-.taocanPartA .taocan1 .prominent a{color:#eb6100;}
-.taocanPartA .taocan1 .prominent a:hover{color:#eb6100; text-decoration:underline;}
-.gktaocan .recIco{ display:inline-block; background:url(http://www.qiyipic.com/common/fix/huiyuan_new_images/recIco.png) no-repeat; width:29px; height:16px; overflow:hidden; margin:0 0 0 2px;}
+.hypartA .recArea {
+    width: 209px;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-left: none;
+    height: 328px;
+    float: left;
+    padding: 0 10px 10px 20px;
+}
+
 /* footer */
-.footer { line-height:20px; text-align:center; padding:20px 0 40px; background:url(http://www.qiyipic.com/common/homepage_images/footerBg.png) center 0 no-repeat; clear:both; }
-.footer, .footer a { color:#6b6b6b; }
-.footer a:hover { color:#4c7d08; }
-.fEn { font-family:Arial; }
+.footer {
+    line-height: 20px;
+    text-align: center;
+    padding: 20px 0 40px;
+    background: url(http://www.qiyipic.com/common/homepage_images/footerBg.png) center 0 no-repeat;
+    clear: both;
+}

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta charset="utf-8">
+<title>模板可视化编辑器</title>
+
+<!-- Bootstrap and jQuery UI libs -->
+<link rel='stylesheet' href='../public/stylesheets/bootstrap.css' />
+<link href="../public/stylesheets/bootstrap-responsive.css" rel="stylesheet">
+<link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
+<script src="../public/javascripts/jquery.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<!-- CodeMirror libs -->
+<link rel="stylesheet" href="../public/javascripts/lib/codemirror.css">
+<link rel="stylesheet" href="../public/javascripts/addon/hint/show-hint.css">
+<script src="../public/javascripts/lib/codemirror.js"></script>
+<script src="../public/javascripts/addon/hint/show-hint.js"></script>
+<script src="../public/javascripts/addon/hint/xml-hint.js"></script>
+<script src="../public/javascripts/addon/hint/html-hint.js"></script>
+<script src="../public/javascripts/mode/xml/xml.js"></script>
+<script src="../public/javascripts/mode/javascript/javascript.js"></script>
+<script src="../public/javascripts/mode/css/css.js"></script>
+<script src="../public/javascripts/mode/htmlmixed/htmlmixed.js"></script>
+
+<!-- Velocity related libs -->
+<script src="../public/javascripts/kissy.js" charset="utf-8"></script>
+
+<!-- My js and css code -->
+<script src="main.js" charset="utf-8"></script>
+<link rel="stylesheet" href="main.css">
+
+</head>
+
+<body>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Web APP</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="/">首页</a></li>
+                <li><a href="/login">登录</a></li>
+                <li><a href="/reg">注册</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="container" class="container">
+        <div class="hero-appicon" data-cms="applist">
+            <div class="appicon">
+                <ul>
+                    <li>
+                        <div class="item-container">
+                            <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
+                                <input class="item-select" type="checkbox" value="checkbox" checked="">
+                                <span class="item-bar"></span>
+                                <span class="item-source">PPS</span>
+                                <span class="item-type">高清</span>
+                                <span class="item-recommend">墙裂推荐</span>
+                                <span class="item-time">2013-08-28</span>
+                                <span class="item-transcode">转码完成</span>
+                                <span class="item-audit">审核通过</span>
+                                <span class="item-publish">视频下线</span>
+                                <span class="item-duration">01:34</span>
+                            </a>
+                        </div>
+                        <div class="info-container">
+                            <select>
+                                <option value="1">奇谱ID</option>
+                                <option value="2">节目ID</option>
+                            </select>
+                            <span class="info-id">594838292</span>
+                            <p class="info-title">宝宝快乐成长记录每刻</p>
+                            <a href="">推送</a> <a href="">播放控制</a> <a href="">详情</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-container">
+                            <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
+                                <input class="item-select" type="checkbox" value="checkbox" checked="">
+                                <span class="item-bar"></span>
+                                <span class="item-source">PPS</span>
+                                <span class="item-type">高清</span>
+                                <span class="item-recommend">墙裂推荐</span>
+                                <span class="item-time">2013-08-28</span>
+                                <span class="item-transcode">转码中</span>
+                                <span class="item-audit">审核通过</span>
+                                <span class="item-publish">未发布</span>
+                                <span class="item-duration">46:23</span>
+                            </a>
+                        </div>
+                        <div class="info-container">
+                            <select>
+                                <option value="1">奇谱ID</option>
+                                <option value="2">节目ID</option>
+                            </select>
+                            <span class="info-id">594838292</span>
+                            <p class="info-title">宝宝快乐成长记录每刻</p>
+                            <a href="">推送</a> <a href="">播放控制</a> <a href="">详情</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-container">
+                            <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
+                                <input class="item-select" type="checkbox" value="checkbox" checked="">
+                                <span class="item-bar"></span>
+                                <span class="item-source">PPS</span>
+                                <span class="item-type">高清</span>
+                                <span class="item-recommend">墙裂推荐</span>
+                                <span class="item-time">2013-08-28</span>
+                                <span class="item-transcode">转码中</span>
+                                <span class="item-audit">审核通过</span>
+                                <span class="item-publish">未发布</span>
+                                <span class="item-duration">32:57</span>
+                            </a>
+                        </div>
+                        <div class="info-container">
+                            <select>
+                                <option value="1">奇谱ID</option>
+                                <option value="2">节目ID</option>
+                            </select>
+                            <span class="info-id">594838292</span>
+                            <p class="info-title">宝宝快乐成长记录每刻</p>
+                            <a href="">推送</a> <a href="">播放控制</a> <a href="">详情</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-container">
+                            <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
+                                <input class="item-select" type="checkbox" value="checkbox" checked="">
+                                <span class="item-bar"></span>
+                                <span class="item-source">PPS</span>
+                                <span class="item-type">高清</span>
+                                <span class="item-recommend">墙裂推荐</span>
+                                <span class="item-time">2013-08-28</span>
+                                <span class="item-transcode">转码中</span>
+                                <span class="item-audit">审核通过</span>
+                                <span class="item-publish">未发布</span>
+                                <span class="item-duration">09:31</span>
+                            </a>
+                        </div>
+                        <div class="info-container">
+                            <select>
+                                <option value="1">奇谱ID</option>
+                                <option value="2">节目ID</option>
+                            </select>
+                            <span class="info-id">594838292</span>
+                            <p class="info-title">宝宝快乐成长记录每刻</p>
+                            <a href="">推送</a> <a href="">播放控制</a> <a href="">详情</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-container">
+                            <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
+                                <input class="item-select" type="checkbox" value="checkbox" checked="">
+                                <span class="item-bar"></span>
+                                <span class="item-source">PPS</span>
+                                <span class="item-type">高清</span>
+                                <span class="item-recommend">墙裂推荐</span>
+                                <span class="item-time">2013-08-28</span>
+                                <span class="item-transcode">转码中</span>
+                                <span class="item-audit">审核通过</span>
+                                <span class="item-publish">未发布</span>
+                                <span class="item-duration">21:05</span>
+                            </a>
+                        </div>
+                        <div class="info-container">
+                            <select>
+                                <option value="1">奇谱ID</option>
+                                <option value="2">节目ID</option>
+                            </select>
+                            <span class="info-id">594838292</span>
+                            <p class="info-title">宝宝快乐成长记录每刻</p>
+                            <a href="">推送</a> <a href="">播放控制</a> <a href="">详情</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-container">
+                            <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
+                                <input class="item-select" type="checkbox" value="checkbox" checked="">
+                                <span class="item-bar"></span>
+                                <span class="item-source">PPS</span>
+                                <span class="item-type">高清</span>
+                                <span class="item-recommend">墙裂推荐</span>
+                                <span class="item-time">2013-08-28</span>
+                                <span class="item-transcode">转码中</span>
+                                <span class="item-audit">审核通过</span>
+                                <span class="item-publish">未发布</span>
+                                <span class="item-duration">06:23</span>
+                            </a>
+                        </div>
+                        <div class="info-container">
+                            <select>
+                                <option value="1">奇谱ID</option>
+                                <option value="2">节目ID</option>
+                            </select>
+                            <span class="info-id">594838292</span>
+                            <p class="info-title">宝宝快乐成长记录每刻</p>
+                            <a href="">推送</a> <a href="">播放控制</a> <a href="">详情</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-container">
+                            <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
+                                <input class="item-select" type="checkbox" value="checkbox" checked="">
+                                <span class="item-bar"></span>
+                                <span class="item-source">PPS</span>
+                                <span class="item-type">高清</span>
+                                <span class="item-recommend">墙裂推荐</span>
+                                <span class="item-time">2013-08-28</span>
+                                <span class="item-transcode">转码中</span>
+                                <span class="item-audit">审核通过</span>
+                                <span class="item-publish">未发布</span>
+                                <span class="item-duration">75:12</span>
+                            </a>
+                        </div>
+                        <div class="info-container">
+                            <select>
+                                <option value="1">奇谱ID</option>
+                                <option value="2">节目ID</option>
+                            </select>
+                            <span class="info-id">594838292</span>
+                            <p class="info-title">宝宝快乐成长记录每刻</p>
+                            <a href="">推送</a> <a href="">播放控制</a> <a href="">详情</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-container">
+                            <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
+                                <input class="item-select" type="checkbox" value="checkbox" checked="">
+                                <span class="item-bar"></span>
+                                <span class="item-source">PPS</span>
+                                <span class="item-type">高清</span>
+                                <span class="item-recommend">墙裂推荐</span>
+                                <span class="item-time">2013-08-28</span>
+                                <span class="item-transcode">转码中</span>
+                                <span class="item-audit">审核通过</span>
+                                <span class="item-publish">未发布</span>
+                                <span class="item-duration">23:31</span>
+                            </a>
+                        </div>
+                        <div class="info-container">
+                            <select>
+                                <option value="1">奇谱ID</option>
+                                <option value="2">节目ID</option>
+                            </select>
+                            <span class="info-id">594838292</span>
+                            <p class="info-title">宝宝快乐成长记录每刻</p>
+                            <a href="">推送</a> <a href="">播放控制</a> <a href="">详情</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr />
+
+        <footer>
+            <p><a href="javascript:;">云帆高科</a> 2013</p>
+        </footer>
+    </div>
+
+    <div id="ToolTip" class="ui-tooltip progress-border hide" draggable="true">
+        <div class="btn-group">
+            <button class="btn btn-primary btn-mini" id="EditWidget">编辑</button>
+            <button class="btn btn-info btn-mini">删除</button>
+            <button class="btn btn-info btn-mini">保存</button>
+            <button class="btn btn-warning btn-mini" id="TipHide">关闭</button>
+        </div>
+    </div>
+
+    <div id="WidgetEditor" class="ui-tooltip editor hide" draggable="true">
+        <legend>定义可编辑内容
+            <a type="button" class="close-custom">×</a>
+        </legend>
+
+        <div class="title-container">
+            <span class="label label-info" id="EditorTitle"></span>
+            <a href="javascript:" id="EditSource">编辑源码</a>
+            <a href="javascript:" id="EditorBack" class="hide">返回</a>
+        </div>
+
+        <div class="container editor-form">
+
+            <form class="form-horizontal data-form">
+                <div class="current-items-container">
+                    <table class="table table-bordered">
+                        <thead><tr>
+                            <td>描述</td>
+                            <td>数据源</td>
+                            <td>选择器</td>
+                            <td>典型值</td>
+                        </tr></thead>
+                        <tbody id="DataList"></tbody>
+                    </table>
+                </div>
+
+                <div class="form-container">
+                    <div class="container">
+
+                        <div class="control-group">
+                            <label class="control-label" for="DataDescription">描述</label>
+                            <div class="controls">
+                                <input type="text" id="DataDescription" placeholder="内容说明">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="DataSource">数据源</label>
+                            <div class="controls">
+                                <input type="text" id="DataSource" placeholder="title">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="selector">选择器</label>
+                            <div class="controls">
+                                <input type="text" id="selector" placeholder="p">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="TypeValue">典型值</label>
+                            <div class="controls">
+                                <input type="text" id="TypeValue" placeholder="Welcome to my site!">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="module-container">
+                    <div class="form-actions">
+                        <button id="SaveButton" type="button" class="btn btn-orange btn-large">提交</button>
+                        <button id="PreviewButton" type="button" class="btn btn-orange btn-large">预览</button>
+                    </div>
+                </div>
+
+            </form>
+
+            <div class="sourcecode-editor hide">
+                <div id="CodeEditor"></div>
+                <a href="javascript:" class="btn" id="ToHtml">html解析</a>
+            </div>
+        </div>
+
+        <div class="editor-preview hide">
+            <table class="table table-bordered">
+                <thead><tr>
+                    <td>描述</td>
+                    <td>数据</td>
+                </tr></thead>
+                <tbody id="DataPreview"></tbody>
+            </table>
+
+            <a id="BackButton" class="btn btn-orange btn-large" href="javascript:"><i class="icon-arrow-left"></i>返回</a>
+        </div>
+    </div>
+
+    <div class="hide" id="TempDiv"></div>
+</body>
+</html>
+
+<!-- Set the fake data value to simulate the user action -->
+<!--
+<div id="DataSet">
+    <table class="table table-bordered">
+        <thead><tr>
+            <td>数据</td>
+            <td>值</td>
+        </tr></thead>
+        <tbody id="FakeDataList"></tbody>
+    </table>
+
+    <form class="form-horizontal">
+        <div class="fake-data-container">
+            <div class="container">
+
+                <div class="control-group">
+                    <label class="control-label" for="FakeData">数据</label>
+                    <div class="controls">
+                        <input type="text" id="FakeData" placeholder="title">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="FakeValue">值</label>
+                    <div class="controls">
+                        <input type="text" id="FakeValue" placeholder="Welcome to visit this site!">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module-container">
+            <div class="form-actions">
+                <button id="SaveFakeData" type="button" class="btn btn-orange btn-large">保存</button>
+            </div>
+        </div>
+    </form>
+</div>
+-->

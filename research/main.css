@@ -12,13 +12,114 @@ body {
     overflow:hidden;
 }
 .appicon ul {
-    width: 110%;
+    width: 100%;
 }
 .appicon li {
     list-style: none;
     float: left;
     display: inline;
-    margin: 40px 40px 0 0;
+    margin: 45px 60px 0 0; /* 控制行间距和列间距 */
+}
+.appicon li a {
+    position: relative;
+    z-index: 1;
+}
+.appicon li .item-bar {
+    background-image: url("img/icon_bar.png");
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 226px;
+    height: 44px;
+    left: -4px;
+    top: 30px;
+    z-index: 2;
+}
+.appicon li .item-select {
+    position: absolute;
+    left: 0px;
+    top: -56px;
+    z-index: 3;
+}
+
+/* 8种text */
+
+/* 视频来源 */
+.appicon li .item-source {
+    color: #FFFFFF;
+    position: absolute;
+    z-index: 3;
+    left: 2px;
+    top: 33px;
+}
+/* 视频清晰度 */
+.appicon li .item-type {
+    color: #FFFFFF;
+    position: absolute;
+    z-index: 3;
+    left: 42px;
+    top: 33px;
+}
+/* 视频推荐 */
+.appicon li .item-recommend {
+    color: #FFFFFF;
+    position: absolute;
+    z-index: 3;
+    left: 84px;
+    top: 33px;
+}
+/* 视频上传时间 */
+.appicon li .item-time {
+    color: #FFFFFF;
+    position: absolute;
+    z-index: 3;
+    left: 154px;
+    top: 33px;
+}
+/* 视频转码状态 */
+.appicon li .item-transcode {
+    color: #FFFFFF;
+    position: absolute;
+    z-index: 3;
+    left: 2px;
+    top: 52px;
+}
+/* 视频审核状态 */
+.appicon li .item-audit {
+    color: #FFFFFF;
+    position: absolute;
+    z-index: 3;
+    left: 59px;
+    top: 52px;
+}
+/* 视频发布状态 */
+.appicon li .item-publish {
+    color: #FFFFFF;
+    position: absolute;
+    z-index: 3;
+    left: 115px;
+    top: 52px;
+}
+/* 视频时长 */
+.appicon li .item-duration {
+    color: #FFFFFF;
+    position: absolute;
+    z-index: 3;
+    left: 186px;
+    top: 52px;
+}
+.appicon li .info-container {
+    margin-top: 10px;
+}
+.appicon li select {
+    width: 100px;
+    margin-bottom: 5px;
+}
+.appicon li .info-id {
+    position: relative;
+    left: 45px;
+}
+.appicon li .info-title {
+    margin-bottom: 5px;
 }
 /**
  * 表单相关的样式

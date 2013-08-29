@@ -87,6 +87,13 @@ form .select-medium {
      width: 700px;
      height: 550px;
 }
+#PlayerContent {
+    float: left;
+}
+#VideoInfoList {
+    width: 400px;
+    margin-top: 15px;
+}
 .hero-appicon {
     background: #eee;
     border-radius: 6px;

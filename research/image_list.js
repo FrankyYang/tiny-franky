@@ -4,7 +4,8 @@ $(function () {
         $('#DetailDialog').dialog({
             title : '节目详情',
             modal : true,
-            width : 800,
+            width : 1200,
+            height: 550,
             buttons : {
                 '关闭' : function() {
                     $(this).dialog('close');

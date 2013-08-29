@@ -1,6 +1,91 @@
 body {
     padding-top: 60px;
     padding-bottom: 40px;
+    background-color: #f6f6f6;
+    font-size: 12px;
+    /* padding:20px; */
+}
+.hide {
+    display: none;
+}
+.wrapper {
+  margin-right: auto;
+  margin-left: auto;
+  padding:20px;
+  *zoom: 1;
+}
+.wrapper .container{
+    /* width:99%; */
+    display: block;
+}
+.wrapper .container-whitebox {
+    border: 1px solid #cdcdcd;
+    background-color: white;
+    margin-bottom: 15px;
+}
+.wrapper form .container-query-options,
+.wrapper form .contaienr-query-btn
+{
+    margin: 40px;
+}
+.wrapper form .container-query-options .control-group {
+    width: 350px;
+    float: left;
+}
+.control-label {
+    float: left;
+    width: 80px;
+    padding-top: 5px;
+    text-align: right;
+}
+form .control-select {
+    float: left;
+    width: 75px;
+    padding-top: 5px;
+    text-align: right;
+    margin-right:5px;
+}
+form .select-medium {
+    width: 160px;
+}
+.container-btn-primary {
+    margin-bottom: 5px;
+}
+
+.divider {
+    padding: 0 5px;
+    color: #999999;
+}
+
+.bread {
+    margin-left: 0px;
+}
+.bread li {
+    list-style: none;
+    display: inline-block;
+}
+.fastoper {
+    position: absolute;
+    top: 80px;
+    left: 200px;
+}
+
+.block-a {
+    display: inline-block;
+    width: 85px;
+    height: 35px;
+    vertical-align: middle;
+    margin-top: -8px;
+    margin-left: 5px;
+}
+
+.line-space {
+    margin-bottom: 25px;
+}
+
+.custom-iframe {
+     width: 700px;
+     height: 550px;
 }
 .hero-appicon {
     background: #eee;
@@ -40,7 +125,10 @@ body {
     top: -56px;
     z-index: 3;
 }
-
+.appicon li .item-greybtn {
+    text-decoration: underline;
+    color: #CCCCCC;
+}
 /* 8种text */
 
 /* 视频来源 */

@@ -13,10 +13,21 @@
 <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 
 <!-- My js and css code -->
-<script src="image_list.js" charset="utf-8"></script>
-<script src="RunActiveContent.js" charset="utf-8"></script>
+<script src="js/UGC.Action.js" charset="utf-8"></script>
+<script src="js/UGC.Base.js" charset="utf-8"></script>
+<script src="js/UGC.Config.js" charset="utf-8"></script>
+<script src="js/UGC.Dao.js" charset="utf-8"></script>
+<script src="js/UGC.Util.js" charset="utf-8"></script>
+<script src="js/UGC.Grid.js" charset="utf-8"></script>
 <link rel="stylesheet" href="main.css">
-
+<script charset="utf-8">
+    $(function () {
+        UGC.Action.run($('#UgcContainer'));
+        UGC.Action.getGrid({
+            '$container': $('#GridContainer')
+        }).run();
+    });
+</script>
 </head>
 
 <body>
@@ -29,18 +40,11 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="/">UGC静态页</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="/">首页</a></li>
-                <li><a href="/login">登录</a></li>
-                <li><a href="/reg">注册</a></li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
 
-    <div id="" class="wrapper">
+    <div id="UgcContainer" class="wrapper">
         <nav>
             <ul class="bread">
                 <li>内容编目<span class="divider"> &gt; </span></li>
@@ -54,7 +58,7 @@
         </div>
 
         <div class="container-whitebox">
-             <form class="form-inline">
+             <form class="form-inline" id="QueryContainer">
                 <div class="container-query-options">
                     <div class=" row-fluid">
                         <div class="control-group line-space">
@@ -109,7 +113,7 @@
                             <select name="" class="control-select">
                                 <option value="1">节目ID</option>
                                 <option value="2">奇谱ID</option>
-                            </select>                            
+                            </select>
                             <div class="controls">
                                 <input type="text" id="CategoryID" name="channelId" placeholder="" class="input-medium">
                             </div>
@@ -207,221 +211,20 @@
             </form>
         </div>
 
-        <div class="container-btn-primary">
-            <button type="button" class="btn btn-primary query-btn">批量推送到PGC节目库</button>
+        <div id="BatchBtn" class="container-btn-primary">
+            <button type="button" class="btn btn-primary query-btn" onclick="javascript:UGC.Action.batch();">批量推送到PGC节目库</button>
         </div>
 
         <div class="container-whitebox">
             <label class="control-label">排序方式：</label>
-            <div class="btn-group controls">
-                <a class="btn" href="#">上传时间<i class="icon-arrow-down"></i></a>
-                <a class="btn" href="#">片源清晰度<i class="icon-arrow-down"></i></a>
-                <a class="btn" href="#">推荐等级<i class="icon-arrow-down"></i></a>
+            <div id="OrderBtnGroup" class="btn-group controls">
+                <a class="btn" href="javascript:;" onclick="UGC.Action.gridReload(1, true)">上传时间<i class="icon-arrow-down"></i></a>
+                <a class="btn" href="javascript:;" onclick="UGC.Action.gridReload(2, true)">片源清晰度<i class="icon-arrow-down"></i></a>
+                <a class="btn" href="javascript:;" onclick="UGC.Action.gridReload(3, true)">推荐等级<i class="icon-arrow-down"></i></a>
             </div>
 
-            <div class="appicon">
-                <ul>
-                    <li>
-                        <div class="item-container">
-                            <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
-                                <input class="item-select" type="checkbox" value="checkbox" checked="">
-                                <span class="item-bar"></span>
-                                <span class="item-source">PPS</span>
-                                <span class="item-type">高清</span>
-                                <span class="item-recommend">墙裂推荐</span>
-                                <span class="item-time">2013-08-28</span>
-                                <span class="item-transcode">转码完成</span>
-                                <span class="item-audit">审核通过</span>
-                                <span class="item-publish">视频下线</span>
-                                <span class="item-duration">01:34</span>
-                            </a>
-                        </div>
-                        <div class="info-container">
-                            <select>
-                                <option value="1">奇谱ID</option>
-                                <option value="2">节目ID</option>
-                            </select>
-                            <span class="info-id">594838292</span>
-                            <p class="info-title">宝宝快乐成长记录每刻</p>
-                            <a href="">推送</a> <a href="">播放控制</a> <a href="javascript:" onclick="Action.detail(1000);">详情</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-container">
-                            <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
-                                <input class="item-select" type="checkbox" value="checkbox" checked="">
-                                <span class="item-bar"></span>
-                                <span class="item-source">PPS</span>
-                                <span class="item-type">高清</span>
-                                <span class="item-recommend">墙裂推荐</span>
-                                <span class="item-time">2013-08-28</span>
-                                <span class="item-transcode">转码中</span>
-                                <span class="item-audit">审核通过</span>
-                                <span class="item-publish">未发布</span>
-                                <span class="item-duration">46:23</span>
-                            </a>
-                        </div>
-                        <div class="info-container">
-                            <select>
-                                <option value="1">奇谱ID</option>
-                                <option value="2">节目ID</option>
-                            </select>
-                            <span class="info-id">594838292</span>
-                            <p class="info-title">宝宝快乐成长记录每刻</p>
-                            <a href="">推送</a> <a href="">播放控制</a> <a href="">详情</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-container">
-                            <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
-                                <input class="item-select" type="checkbox" value="checkbox" checked="">
-                                <span class="item-bar"></span>
-                                <span class="item-source">PPS</span>
-                                <span class="item-type">高清</span>
-                                <span class="item-recommend">墙裂推荐</span>
-                                <span class="item-time">2013-08-28</span>
-                                <span class="item-transcode">转码中</span>
-                                <span class="item-audit">审核通过</span>
-                                <span class="item-publish">未发布</span>
-                                <span class="item-duration">32:57</span>
-                            </a>
-                        </div>
-                        <div class="info-container">
-                            <select>
-                                <option value="1">奇谱ID</option>
-                                <option value="2">节目ID</option>
-                            </select>
-                            <span class="info-id">594838292</span>
-                            <p class="info-title">宝宝快乐成长记录每刻</p>
-                            <a href="">推送</a> <a href="">播放控制</a> <a href="">详情</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-container">
-                            <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
-                                <input class="item-select" type="checkbox" value="checkbox" checked="">
-                                <span class="item-bar"></span>
-                                <span class="item-source">PPS</span>
-                                <span class="item-type">高清</span>
-                                <span class="item-recommend">墙裂推荐</span>
-                                <span class="item-time">2013-08-28</span>
-                                <span class="item-transcode">转码中</span>
-                                <span class="item-audit">审核通过</span>
-                                <span class="item-publish">未发布</span>
-                                <span class="item-duration">09:31</span>
-                            </a>
-                        </div>
-                        <div class="info-container">
-                            <select>
-                                <option value="1">奇谱ID</option>
-                                <option value="2">节目ID</option>
-                            </select>
-                            <span class="info-id">594838292</span>
-                            <p class="info-title">宝宝快乐成长记录每刻</p>
-                            <a href="">推送</a> <a href="">播放控制</a> <a href="">详情</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-container">
-                            <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
-                                <input class="item-select" type="checkbox" value="checkbox" checked="">
-                                <span class="item-bar"></span>
-                                <span class="item-source">PPS</span>
-                                <span class="item-type">高清</span>
-                                <span class="item-recommend">墙裂推荐</span>
-                                <span class="item-time">2013-08-28</span>
-                                <span class="item-transcode">转码中</span>
-                                <span class="item-audit">审核通过</span>
-                                <span class="item-publish">未发布</span>
-                                <span class="item-duration">21:05</span>
-                            </a>
-                        </div>
-                        <div class="info-container">
-                            <select>
-                                <option value="1">奇谱ID</option>
-                                <option value="2">节目ID</option>
-                            </select>
-                            <span class="info-id">594838292</span>
-                            <p class="info-title">宝宝快乐成长记录每刻</p>
-                            <a href="">推送</a> <a href="">播放控制</a> <a href="">详情</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-container">
-                            <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
-                                <input class="item-select" type="checkbox" value="checkbox" checked="">
-                                <span class="item-bar"></span>
-                                <span class="item-source">PPS</span>
-                                <span class="item-type">高清</span>
-                                <span class="item-recommend">墙裂推荐</span>
-                                <span class="item-time">2013-08-28</span>
-                                <span class="item-transcode">转码中</span>
-                                <span class="item-audit">审核通过</span>
-                                <span class="item-publish">未发布</span>
-                                <span class="item-duration">06:23</span>
-                            </a>
-                        </div>
-                        <div class="info-container">
-                            <select>
-                                <option value="1">奇谱ID</option>
-                                <option value="2">节目ID</option>
-                            </select>
-                            <span class="info-id">594838292</span>
-                            <p class="info-title">宝宝快乐成长记录每刻</p>
-                            <a href="">推送</a> <a href="">播放控制</a> <a href="">详情</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-container">
-                            <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
-                                <input class="item-select" type="checkbox" value="checkbox" checked="">
-                                <span class="item-bar"></span>
-                                <span class="item-source">PPS</span>
-                                <span class="item-type">高清</span>
-                                <span class="item-recommend">墙裂推荐</span>
-                                <span class="item-time">2013-08-28</span>
-                                <span class="item-transcode">转码中</span>
-                                <span class="item-audit">审核通过</span>
-                                <span class="item-publish">未发布</span>
-                                <span class="item-duration">75:12</span>
-                            </a>
-                        </div>
-                        <div class="info-container">
-                            <select>
-                                <option value="1">奇谱ID</option>
-                                <option value="2">节目ID</option>
-                            </select>
-                            <span class="info-id">594838292</span>
-                            <p class="info-title">宝宝快乐成长记录每刻</p>
-                            <a href="">推送</a> <a href="">播放控制</a> <a href="">详情</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-container">
-                            <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
-                                <input class="item-select" type="checkbox" value="checkbox" checked="">
-                                <span class="item-bar"></span>
-                                <span class="item-source">PPS</span>
-                                <span class="item-type">高清</span>
-                                <span class="item-recommend">墙裂推荐</span>
-                                <span class="item-time">2013-08-28</span>
-                                <span class="item-transcode">转码中</span>
-                                <span class="item-audit">审核通过</span>
-                                <span class="item-publish">未发布</span>
-                                <span class="item-duration">23:31</span>
-                            </a>
-                        </div>
-                        <div class="info-container">
-                            <select>
-                                <option value="1">奇谱ID</option>
-                                <option value="2">节目ID</option>
-                            </select>
-                            <span class="info-id">594838292</span>
-                            <p class="info-title">宝宝快乐成长记录每刻</p>
-                            <a href="">推送</a> <a href="">播放控制</a> <a href="">详情</a>
-                        </div>
-                    </li>
-                </ul>
+            <div class="image-list" id="GridContainer">
+                <ul></ul>
             </div>
         </div>
 
@@ -435,59 +238,156 @@
     <div class="hide" id="DetailDialog">
         <div class="row-fluid">
             <div id="PlayerContent"></div>
-            <table id="VideoInfoList" class="table">
+            <table id="VideoInfoList" class="table table-striped table-bordered table-condensed">
                 <thead></thead>
-                <tbody>
-                    <tr>
-                        <td>节目ID</td>
-                        <td>39573729</td>
-                    </tr>
-                    <tr>
-                        <td>奇谱ID</td>
-                        <td>73738392</td>
-                    </tr>
-                    <tr>
-                        <td>节目名称</td>
-                        <td>我的温馨的小窝</td>
-                    </tr>
-                    <tr>
-                        <td>描述</td>
-                        <td>我的家的全貌，客厅、厨房、阳台、卧室</td>
-                    </tr>
-                    <tr>
-                        <td>内容来源</td>
-                        <td>帕帕奇</td>
-                    </tr>
-                    <tr>
-                        <td>推荐等级</td>
-                        <td>强烈推荐</td>
-                    </tr>
-                    <tr>
-                        <td>片源清晰度</td>
-                        <td>高</td>
-                    </tr>
-                    <tr>
-                        <td>分类</td>
-                        <td>生活</td>
-                    </tr>
-                    <tr>
-                        <td>自定义标签</td>
-                        <td>
-                            <span class="label label-info">生活</span>
-                            <span class="label label-info">家居</span>
-                            <span class="label label-info">正能量</span>
-                        </td>
-                    </tr>
-                </tbody>
+                <tbody></tbody>
             </table>
         </div>
     </div>
-    
-    <script id="TmplSeprate" type="text/x-jquery-tmpl">                                                                            
-        <li>
+
+    <div class="hide" id="PushDialog">
+        <form class="form-inline">
+            <div class="control-group line-space">
+                <label class="control-label" for="videoName">选择频道：<span class="form-must">*</span></label>
+                <div class="controls">
+                    <input type="text" name="channel" placeholder="">
+                </div>
+            </div>
+
+            <div class="control-group line-space">
+                <label class="control-label" for="videoName">节目名称：<span class="form-must">*</span></label>
+                <div class="controls">
+                    <input type="text" name="videoName" placeholder="">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="hide" id="BatchDialog">
+        <div class="control-group">
+            <label class="control-label" for="videoName">推送频道：</label>
+            <div class="controls">
+                <input type="text" name="channel" placeholder="" class="input-medium">
+                <span style="color:#CECBCB;">输入后会自动带入下方每个节目的推送频道</span>
+            </div>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>节目名称</td>
+                    <td>推送频道</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="hide" id="ProcessDialog">
+    </div>
+
+    <div class="hide" id="ControlDialog">
+        <form class="form-inline">
+            <div class=" row-fluid">
+                <div class="control-group mb40">
+                    <label class="control-label-w" for="videoName">视频播放控制操作：<span class="form-must">*</span></label>
+                    <div class="controls">
+                        <input type="radio" name="operation" class="label-radio" value="1"><span class="radio-label">有效</span>
+                        <input type="radio" name="operation" class="label-radio" value="2"><span class="radio-label">无效</span>
+                    </div>
+                </div>
+
+                <div class="control-group mb40">
+                    <label class="control-label-w" for="videoName">变更原因：</label>
+                    <div class="controls">
+                        <textarea row=5 name="reason"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>操作时间</td>
+                    <td>操作</td>
+                    <td>操作内容</td>
+                    <td>操作人</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script id="TmplDetailTable" type="text/x-jquery-tmpl">
+        <tr>
+            <td>节目ID</td>
+            <td>${videoId}</td>
+        </tr>
+        <tr>
+            <td>奇谱ID</td>
+            <td>${qipuId}</td>
+        </tr>
+        <tr>
+            <td>节目名称</td>
+            <td>${videoTitle}</td>
+        </tr>
+        <tr>
+            <td>描述</td>
+            <td>${description}</td>
+        </tr>
+        <tr>
+            <td>内容来源</td>
+            <td>${source}</td>
+        </tr>
+        <tr>
+            <td>推荐等级</td>
+            <td>${recommend}</td>
+        </tr>
+        <tr>
+            <td>片源清晰度</td>
+            <td>${type}</td>
+        </tr>
+        <tr>
+            <td>分类</td>
+            <td>${category}</td>
+        </tr>
+        <tr>
+            <td>自定义标签</td>
+            <td>
+                {{each labels}}
+                    <span class="label label-info">${$value}</span>
+                {{/each}}
+            </td>
+        </tr>
+    </script>
+    <script id="TmplBatchList" type="text/x-jquery-tmpl">
+        <tr id="${id}">
+            <td><input type="text" name="batch-name"></td>
+            <td><input type="text" name="batch-channel" class="input-medium"></td>
+            <td><a href="javascript:;" onclick="javascript:UGC.Action.batchDel()">删除</a></td>
+        </tr>
+    </script>
+
+    <script id="TmplControlHistory" type="text/x-jquery-tmpl">
+        <tr>
+            <td>${operationTime}</td>
+            <td>${operation}</td>
+            <td>${operationContent}</td>
+            <td>${operator}</td>
+        </tr>
+    </script>
+
+    <script id="TmplProcessText" type="text/x-jquery-tmpl">
+        <p>该节目已经被推送至<a class="span-red" href="" target="_black">原创</a>频道，节目ID为<span class="span-red">${id}</span>可<a href="" target="_blank">点击查看</a>该节目。UGC节目不能被重复推送，请去<a class="span-red" href="" target="_black">原创</a>频道进行多发。</p>
+    </script>
+
+    <script id="TmplSeprate" type="text/x-jquery-tmpl">
+        <li data-id="${id}">
             <div class="item-container">
                 <a href="" target="_blank"><img src="img/thumbnail.jpg" alt="" />
-                    <input class="item-select" type="checkbox" value="checkbox" checked="">
+                    <input class="item-select" type="checkbox" value="checkbox">
                     <span class="item-bar"></span>
                     <span class="item-source">${source}</span>
                     <span class="item-type">${type}</span>
@@ -506,53 +406,19 @@
                 </select>
                 <span class="info-id">${id}</span>
                 <p class="info-title">${title}</p>
-                {{if canPush}}<a href="">推送</a> {{else}}<span class="item-greybtn">推送</span>{{/if}}
-                {{if canPlay}}<a href="">播放控制</a> {{else}}<span class="item-greybtn">播放控制</span>{{/if}}
-                <a href="">详情</a>
+                {{if canPush}}
+                    <a href="javascript:UGC.Action.push(${id});">推送</a>&nbsp;
+                {{else}}
+                    <span class="item-greybtn">推送</span>
+                {{/if}}
+                {{if canPlay}}
+                    <a href="javascript:UGC.Action.control(${id});">播放控制</a>&nbsp;
+                {{else}}
+                    <span class="item-greybtn">播放控制</span>
+                {{/if}}
+                <a href="javascript:UGC.Action.detail(${id});">详情</a>
             </div>
         </li>
-    </script>    
-    
-    <div class="hide">
-        <script>
-            var DD = '10.11.50.129';
-            var vid = '911b4f5fdb18287d19b1ab7f4ba71f65';
-            var paramDataServer =  'test.storage.mams.qiyi.domain:80';
-            var BroadCastRate = '';
-            var tvid = '100009362';
-            var interfaceHost =DD;
-            var innerDataServer = "10.10.131.76";  //视频流的获取地址
-            var vdInterface = "http://" + interfaceHost + "/vd/";
-            var vdtInterface = "http://" + interfaceHost + "/vdt/";
-            var reupload =0;
-            var innerStatus = 0;
-            var tp = 0;
-            var qiyiurl = (reupload == 1 ? vdtInterface : vdInterface);
-            var dataurl = (innerStatus == 1 ? innerDataServer : paramDataServer);
-            AC_FL_RunContent(
-                    'codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0',
-                    'width', 640,
-                    'height', 420,
-                    'src', 'player',
-                    'quality', 'high',
-                    'pluginspage', 'http://www.macromedia.com/go/getflashplayer',
-                    'align', 'middle',
-                    'play', 'true',
-                    'loop', 'true',
-                    'scale', 'showall',
-                    'wmode', 'window',
-                    'devicefont', 'false',
-                    'id', 'player',
-                    'bgcolor', '#000000',
-                    'name', 'player',
-                    'menu', 'true',
-                    'allowFullScreen', 'true',
-                    'allowScriptAccess', 'always',
-                    'movie', 'http://lego-fe-test-dev01.qiyi.virtual:9000/lego-static/swf/preview',
-                    'flashVars', 'innerID=qc_111115_111115&qiyiurl=' + qiyiurl + '&vid=' + vid + '&tvid=' + tvid + '&qiyiport='+interfaceHost+'&dataurl=' + dataurl,
-                    'salign', ''
-            ); 
-        </script>
-    </div>    
+    </script>
 </body>
 </html>

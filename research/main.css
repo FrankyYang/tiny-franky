@@ -38,6 +38,36 @@ body {
     padding-top: 5px;
     text-align: right;
 }
+#ControlDialog {
+    max-height: 450px;
+}
+#ControlDialog .control-label-w {
+    float: left;
+    width: 150px;
+    padding-top: 5px;
+    text-align: right;
+}
+#ControlDialog .mb40 {
+    margin-bottom: 40px;
+}
+#ControlDialog input[type="radio"] {
+    margin: 6px 0;
+}
+#ControlDialog textarea {
+    width: 300px;
+    height: 50px;
+}
+.radio-label {
+    float: left;
+    padding-top: 4px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.label-radio {
+    float: left;
+    margin-left: 10px;
+    margin-top: 6px;
+}
 form .control-select {
     float: left;
     width: 75px;
@@ -47,6 +77,13 @@ form .control-select {
 }
 form .select-medium {
     width: 160px;
+}
+form .form-must {
+    position: relative;
+    top: 4px;
+    right: 4px;
+    color: red;
+    font-size: 16px;
 }
 .container-btn-primary {
     margin-bottom: 5px;
@@ -94,29 +131,27 @@ form .select-medium {
     width: 400px;
     margin-top: 15px;
 }
-.hero-appicon {
-    background: #eee;
-    border-radius: 6px;
-    margin-bottom: 30px;
-    padding: 20px 60px 60px;
+.span-red {
+    color: red;
 }
-.appicon {
+.image-list {
     overflow:hidden;
+    margin-left: -40px;
 }
-.appicon ul {
+.image-list ul {
     width: 100%;
 }
-.appicon li {
+.image-list li {
     list-style: none;
     float: left;
     display: inline;
-    margin: 45px 60px 0 0; /* 控制行间距和列间距 */
+    margin: 22.5px 30px 22.5px 30px; /* 控制行间距和列间距 */
 }
-.appicon li a {
+.image-list li a {
     position: relative;
     z-index: 1;
 }
-.appicon li .item-bar {
+.image-list li .item-bar {
     background-image: url("img/icon_bar.png");
     background-repeat: no-repeat;
     position: absolute;
@@ -126,20 +161,20 @@ form .select-medium {
     top: 30px;
     z-index: 2;
 }
-.appicon li .item-select {
+.image-list li .item-select {
     position: absolute;
     left: 0px;
     top: -56px;
     z-index: 3;
 }
-.appicon li .item-greybtn {
+.image-list li .item-greybtn {
     text-decoration: underline;
     color: #CCCCCC;
 }
 /* 8种text */
 
 /* 视频来源 */
-.appicon li .item-source {
+.image-list li .item-source {
     color: #FFFFFF;
     position: absolute;
     z-index: 3;
@@ -147,23 +182,23 @@ form .select-medium {
     top: 33px;
 }
 /* 视频清晰度 */
-.appicon li .item-type {
+.image-list li .item-type {
     color: #FFFFFF;
     position: absolute;
     z-index: 3;
-    left: 42px;
+    left: 58px;
     top: 33px;
 }
 /* 视频推荐 */
-.appicon li .item-recommend {
+.image-list li .item-recommend {
     color: #FFFFFF;
     position: absolute;
     z-index: 3;
-    left: 84px;
+    left: 95px;
     top: 33px;
 }
 /* 视频上传时间 */
-.appicon li .item-time {
+.image-list li .item-time {
     color: #FFFFFF;
     position: absolute;
     z-index: 3;
@@ -171,7 +206,7 @@ form .select-medium {
     top: 33px;
 }
 /* 视频转码状态 */
-.appicon li .item-transcode {
+.image-list li .item-transcode {
     color: #FFFFFF;
     position: absolute;
     z-index: 3;
@@ -179,7 +214,7 @@ form .select-medium {
     top: 52px;
 }
 /* 视频审核状态 */
-.appicon li .item-audit {
+.image-list li .item-audit {
     color: #FFFFFF;
     position: absolute;
     z-index: 3;
@@ -187,7 +222,7 @@ form .select-medium {
     top: 52px;
 }
 /* 视频发布状态 */
-.appicon li .item-publish {
+.image-list li .item-publish {
     color: #FFFFFF;
     position: absolute;
     z-index: 3;
@@ -195,89 +230,24 @@ form .select-medium {
     top: 52px;
 }
 /* 视频时长 */
-.appicon li .item-duration {
+.image-list li .item-duration {
     color: #FFFFFF;
     position: absolute;
     z-index: 3;
-    left: 186px;
+    left: 181px;
     top: 52px;
 }
-.appicon li .info-container {
+.image-list li .info-container {
     margin-top: 10px;
 }
-.appicon li select {
+.image-list li select {
     width: 100px;
     margin-bottom: 5px;
 }
-.appicon li .info-id {
+.image-list li .info-id {
     position: relative;
-    left: 45px;
+    left: 40px;
 }
-.appicon li .info-title {
+.image-list li .info-title {
     margin-bottom: 5px;
-}
-/**
- * 表单相关的样式
- */
-.form-container {
-  border: 1px solid #cdcdcd;
-  background-color: rgba(252, 248, 248, 0.47);
-  margin-bottom: 15px;
-  width: 600px;
-}
-
-.form-container hr.dotted {
-    margin: 10px 0;
-    border: 0;
-    border-top: 1px dashed #bfbfbf;
-    border-bottom: 1px dashed #ffffff;
-}
-
-.form-container .container .form-inline {
-    margin: 0;
-}
-
-.form-container .container, .form-container .module-container {
-    margin: 20px;
-}
-
-.form-horizontal .form-actions {
-    background-color: white;
-    border: 0;
-    width: 420px;
-}
-.editor {
-    width: 600px;
-    height: 600px;
-    max-width: 1024px;
-    background-color: #fff;
-}
-.editor .close-custom {
-    right: -420px;
-    position: relative;
-}
-.editor .container {
-    width: 600px;
-}
-.editor legend {
-    margin-bottom: 10px;
-}
-.editor .title-container {
-    margin-bottom: 10px;
-}
-.editor #EditSource,
-.editor #EditorBack {
-    position: relative;
-    top: 3px;
-}
-.editor .CodeMirror {
-    border-top: 1px solid #888;
-    border-bottom: 1px solid #888;
-    position: relative;
-}
-.editor #CodeEditor {
-    position: relative;
-}
-.hide {
-    display: none;
 }

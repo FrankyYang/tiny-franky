@@ -1,0 +1,84 @@
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.yellow-bg {
+    background-color: #F9D195;
+}
+
+.menu-wrapper {
+    border: 0px;
+    width: 990px;
+    margin-top: 12px;
+    line-height: 20px;
+}
+.menu-li {
+    float: left;
+    width: 184px;
+    height: 24px;
+    line-height: 24px;
+    margin-left: 4px;
+    margin-right: 4px;
+
+    color: rgb(142, 108, 87);
+    background-color: rgb(254, 253, 253);
+    border: 2px solid rgb(187, 228, 207);
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+
+    cursor: pointer;
+}
+.menu-li-curr {
+    color: rgb(128, 201, 165);
+}
+.menu-li:hover {
+    color: rgb(128, 201, 165);
+}
+
+.images-wrapper {
+    border: 0px;
+    background: #fff repeat-x 0;
+}
+.images-li {
+    float: left;
+}
+
+.left-arrow {
+    position: absolute;
+    width: 45px;
+    height: 119px;
+    overflow: hidden;
+    background: url(img/arrows.png) no-repeat;
+}
+.right-arrow {
+    position: absolute;
+    width: 45px;
+    height: 119px;
+    overflow: hidden;
+    background: url(img/arrows.png) no-repeat;
+    background-position: 100% 0px;
+}
+
+.row-fluid {
+    display: table-row;
+}
+.row-fluid .span4 {
+    float: left;
+}
+.col {
+    margin: 0 auto;
+}
+
+.hide {
+    display: none;
+}
+
+.font_2 {
+    font: normal normal bold 40px/1.1em 'kelly slab', fantasy;
+    font-size: 18px;
+    color: rgb(98, 72, 61);
+    margin-top: 10px;
+}

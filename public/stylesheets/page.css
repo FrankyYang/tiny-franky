@@ -1,0 +1,198 @@
+.wrapper {
+    width: 940px;
+    margin: 0 auto;
+}
+
+.header,
+.footer {
+    height: 300px;
+}
+
+.footer {
+    height: 50px;
+    margin-left: 20px;
+}
+
+.logo-bg {
+    width: 150px;
+    height: 150px;
+    margin-top: 28px;
+
+    border: 0px solid #80C9A5;
+    border-image: initial;
+    background-color: #80C9A5;
+    border-radius: 50%;
+}
+.logo-bg-img {
+    margin-top: 30px;
+}
+
+.slogan {
+    width: 473px;
+    height: 135px;
+    margin-top: -32px;
+    background: url(img/slogan.png) repeat-x;
+}
+.slogan-title {
+    font: normal normal normal 30px/1.1em 'chelsea market', fantasy;
+    color: rgb(142, 108, 87);
+    padding-top: 25px;
+}
+.slogan-subtitle {
+    font: normal normal normal 19px/1.3em 'kelly slab', fantasy;
+    color: rgb(98, 72, 61);
+    padding-top: 24px;
+}
+.menu-header {
+    width: 980px;
+    height: 9px;
+    background: url(img/spark-line.png) repeat-x;
+}
+.font-focus-main {
+    font: normal normal normal 19px/1.3em 'kelly slab', fantasy;
+    font-size: 19px;
+    font-weight: bold;
+    color: rgb(98, 72, 61);
+}
+.focus-sub {
+    font-family: Enriqueta;
+    /* line-height: 1.2em; */
+
+    height: 46px;
+    margin-left: 35px;
+    line-height: 46px;
+    font-size: 28px;
+}
+.focus-sub-text {
+    float: left;
+}
+
+.focus-container {
+    width: 940px;
+    margin-left: 20px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+.focus-description {
+    width: 233px;
+    height: 150px;
+
+    position: absolute;
+    margin-left: 53px;
+    margin-top: 208px;
+}
+.focus-description-main-img {
+    width: 60px;
+    height: 60px;
+}
+.focus-description-left-img {
+    width: 35px;
+    height: 35px;
+    float: left;
+    margin-top: 5px;
+}
+.focus-description-right-img {
+    width: 35px;
+    height: 35px;
+    float: left;
+    margin-top: 5px;
+}
+.focus-left-arrow {
+    position: absolute;
+    margin-left: -40px;
+    margin-top: 60px;
+    width: 45px;
+    height: 119px;
+    overflow: hidden;
+}
+.focus-wrapper {
+    width: 10000px;
+    height: 535px;
+}
+.focus-li {
+    width: 928px;
+    height: 511px;
+}
+.focus-img {
+    margin-top: 12px;
+    margin-left: 12px;
+    width: 916px;
+    height: 511px;
+}
+.focus-left-arrow {
+    margin-left: 20px;
+    margin-top: 232px;
+}
+.focus-right-arrow {
+    margin-left: 877px;
+    margin-top: -302px;
+}
+.focus-details {
+    position: absolute;
+    background-color: rgba(249, 209, 149, 0.772549);
+    width: 916px;
+    height: 62px;
+    margin-left: 12px;
+    margin-top: -74px;
+}
+
+.items-container {
+    width: 797px;
+    height: 199px;
+    margin-left: 93px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+.items-wrapper {
+    width: 10000px;
+    height: 195px;
+}
+.items-li {
+    width: 187px;
+    height: 187px;
+    margin-left: 6px;
+    margin-right: 6px;
+    overflow: hidden;
+}
+.items-img {
+    width: 313px;
+    height: 187px;
+    margin-left: -63px;
+    margin-top: 6px;
+}
+
+.items-left-arrow {
+    margin-left: -40px;
+    margin-top: 60px;
+}
+.items-right-arrow {
+    margin-left: 795px;
+    margin-top: -139px;
+}
+
+.footer-img {
+    width: 100px;
+    height: 100px;
+}
+.footer-content {
+    width: 920px;
+}
+.footer-header {
+    background: url(img/footer.png) no-repeat;
+    height: 80px;
+    margin-top: 20px;
+}
+.footer-footer {
+    background: url(img/footer.png) no-repeat;
+    background-position: 0px 100%;
+    height: 110px;
+}
+.footer-twitter {
+    width: 306px;
+}
+.footer-call {
+    width: 306px;
+}
+.footer-email {
+    width: 306px;
+}

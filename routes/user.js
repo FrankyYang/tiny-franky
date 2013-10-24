@@ -88,7 +88,8 @@ var _self = {
         if (user && user.name) {
             _renderUserPosts(req, res, user.name);
         } else {
-            _render('./home/index', req, res, gConfig.user.frontPageTitle, {posts: null});
+            // _render('./home/index', req, res, gConfig.user.frontPageTitle, {posts: null});
+            _render(__dirname + '/public');
         }
     },
 

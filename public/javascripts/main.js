@@ -1,28 +1,33 @@
 $(function () {
-    var $formContainer = $('#NoteContainer');
-    var $hiddenUpdate = $formContainer.find('input[name="update"]');
-    var $dataTable = $('#DataList');
+    var startPos = 0;
+    var timerInterval = 500;
+    var $container = $('#FocusContainer');
+    var $mainFocus = $container.find('#MainFocus');
+    var length = $mainFocus.find('li').length - 1;
+    var _moveFocus = function () {
+        if (length <= 0) {
+            $mainFocus.append($mainFocus.find('li:lt(3)').remove()).css('margin-left', '0px');
+            length = $mainFocus.find('li').length - 1;
+            startPos = 0;
+        }
 
-    $dataTable.find(".delete").bind("click", function (event) {
-        $.post("operation", {
-            urlvalue: this.id,
-            operation: "delete"
-        }, function(data){
-            location.reload();
+        startPos = startPos - 928;
+        $container.find('.focus-details').fadeOut(function () {
+            $mainFocus.animate({
+                'margin-left': startPos + 'px'
+            }, timerInterval, function () {
+                $container.find('.focus-details').fadeIn();
+            });
+            length--;
         });
-    });
+    };
+    var timerId = setInterval(_moveFocus, 3000);
 
-    $dataTable.find(".edit").bind("click", function (event) {
-        var link = this.id;
-        var $tr = $(this).parent().parent();
-        var $title = $formContainer.find('#title');
-        var $content = $formContainer.find('#content');
-        var $hiddenUpdate = $formContainer.find('input[name="update"]');
-        var title = $tr.find('td').eq(0).html();
-        var content = $tr.find('td').eq(1).html();
-
-        $title.val(title);
-        $content.val(content);
-        $hiddenUpdate.val(1);
+    $mainFocus.hover(function () {
+        $container.find('.focus-left-arrow').show();
+        $container.find('.focus-right-arrow').show();
+    }, function () {
+        $container.find('.focus-left-arrow').hide();
+        $container.find('.focus-right-arrow').hide();
     });
-});
+})

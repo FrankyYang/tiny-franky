@@ -24,7 +24,9 @@
     border-radius: 50%;
 }
 .logo-bg-img {
-    margin-top: 30px;
+    margin-top: 15px;
+    width: 118px;
+    height: 110px;
 }
 
 .slogan {

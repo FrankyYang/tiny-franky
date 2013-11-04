@@ -1,16 +1,31 @@
 {
-  "name": "api-simulator",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node app"
+  "name": "tizen_utils test",
+  "version": "0.1",
+  "description": "Test the tizen_utils functions in simulator project",
+  "homepage": "http://github.com/otcshare/simulator",
+  "author": {
+    "name": "Researcher in Intel/SSD/OTC",
+    "url": "http://github.com/otcshare/simulator"
   },
+  "licenses": [{
+    "type": "Apache 2.0",
+    "url": "http://www.apache.org/licenses/LICENSE-2.0"
+  }],
+  "bin": { "tizen_utils": "./bin/tizen_utils" },
+  "main": "lib/index",
   "dependencies": {
-    "express": "3.0.0beta7",
-    "jade": "*",
-	"ejs" : "*",
-	"connect-mongo" : "*",
-	"mongodb" : "*",
-	"express-partials" : "*"
-  }
+    "node": "0.4.x",
+    "jWorkflow": "*"
+  },
+  "bundledDependencies": [
+    "node"
+  ],
+  "files": [
+    "build/release",
+    "README.md",
+    "LICENSE",
+    "lib",
+    "bin"
+  ],
+  "private": true
 }
